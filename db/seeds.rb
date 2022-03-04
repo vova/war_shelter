@@ -10,6 +10,10 @@
   PlaceStatus.create(name: status) unless PlaceStatus.where(name: status).any?
 end
 
+%i[urgent_to_call accommodated in_office in_trip at_home no_response declined].each do |status|
+  UserStatus.create(status: status) unless UserStatus.where(status: status).any?
+end
+
 Transport::TRANSPORT_NAMES.each do |name|
   [true, false].each do |company_transfer|
     transport_attributes = { name: name, company_transfer: company_transfer }
