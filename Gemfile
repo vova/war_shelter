@@ -16,8 +16,15 @@ gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails', '~> 6.2'
+  gem 'ffaker', '~> 2.20'
+  gem 'pry', '~> 0.13'
+  gem 'pry-byebug', '~> 3.9'
+  gem 'pry-doc', '~> 1.1'
+  gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 5.1.0'
+  gem 'shoulda-matchers', '~> 5.1'
+  gem 'simplecov', '~> 0.21', require: false
 end
 
 group :development do
