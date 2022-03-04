@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+  root to: "home#index"
 
   scope :module => 'buttercms' do
     get '/categories/:slug' => 'categories#show', :as => :buttercms_category
