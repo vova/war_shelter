@@ -7,5 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 %i[available booked assigned not_available paid_in_advance].each do |status|
-  PlaceStatus.create(name: status)
+  PlaceStatus.create(name: status) unless PlaceStatus.where(name: status).any?
+end
+
+Transport::TRANSPORT_NAMES.each do |name|
+  [true, false].each do |company_transfer|
+    transport_attributes = { name: name, company_transfer: company_transfer }
+    Transport.create(transport_attributes) unless Transport.where(transport_attributes).any?
+  end
 end
