@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_04_145225) do
+ActiveRecord::Schema.define(version: 2022_03_04_193916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accommodation_types", force: :cascade do |t|
-    t.integer "name"
+    t.string "name"
     t.index ["name"], name: "index_accommodation_types_on_name", unique: true
   end
 
