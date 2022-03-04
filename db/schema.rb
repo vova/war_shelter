@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_04_065516) do
+ActiveRecord::Schema.define(version: 2022_03_04_100513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accommodation_types", force: :cascade do |t|
+    t.integer "name"
+    t.index ["name"], name: "index_accommodation_types_on_name", unique: true
+  end
 
   create_table "place_statuses", force: :cascade do |t|
     t.integer "name"
