@@ -78,6 +78,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.5.0)
+    docile (1.4.0)
     erubi (1.10.0)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -164,6 +166,9 @@ GEM
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    responders (3.0.1)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rspec-core (3.11.0)
       rspec-support (~> 3.11.0)
     rspec-expectations (3.11.0)
@@ -181,9 +186,6 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.11.0)
-    responders (3.0.1)
-      actionpack (>= 5.0)
-      railties (>= 5.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -244,10 +246,9 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.4)
   buttercms-rails
+  devise (~> 4.8.1)
   factory_bot_rails (~> 6.2)
   ffaker (~> 2.20)
-  byebug
-  devise (~> 4.8.1)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg (~> 1.1)
