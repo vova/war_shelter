@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_145225) do
     t.integer "capacity", default: 2, null: false
     t.integer "additional_child_place", default: 0
     t.integer "coordinator_id"
-    t.integer "status"
+    t.integer "status_id"
     t.integer "price_per_day"
     t.integer "price_per_month"
     t.boolean "is_price_in_dollars"
