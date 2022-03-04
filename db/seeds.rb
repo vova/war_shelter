@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+%i[available booked assigned not_available paid_in_advance].each do |status|
+  PlaceStatus.create(name: status)
+end
