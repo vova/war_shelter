@@ -4,7 +4,7 @@
 
 ### Description
 
-App is implemented on **Ruby 2.7**
+App is implemented on **Ruby 2.7.5**
 
 **Ruby on Rails 6.1.4**
 

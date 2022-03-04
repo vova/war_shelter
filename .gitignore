@@ -19,6 +19,7 @@
 !/tmp/pids/.keep
 
 # Ignore uploaded files in development.
+target/coverage
 /storage/*
 !/storage/.keep
 
