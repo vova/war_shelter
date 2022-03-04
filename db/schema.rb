@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_145225) do
 
   create_table "places", force: :cascade do |t|
     t.string "name", limit: 100, null: false
-    t.integer "type"
+    t.integer "accomodation_type_id"
     t.string "city"
     t.string "region"
     t.integer "rooms_available"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_145225) do
     t.string "website"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["accomodation_type_id"], name: "index_places_on_accomodation_type_id"
   end
 
   create_table "transports", force: :cascade do |t|

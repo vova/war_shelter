@@ -2,7 +2,7 @@ class CreatePlaces < ActiveRecord::Migration[6.1]
   def change
     create_table :places do |t|
       t.string :name, limit: 100, null: false
-      t.integer :type
+      t.integer :accomodation_type_id, index: true
       t.string :city
       t.string :region
       t.integer :rooms_available

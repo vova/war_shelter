@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Place, type: :model do
   describe 'table columns' do
     it { is_expected.to have_db_column(:name).of_type(:string).with_options(limit: 100, null: false) }
-    it { is_expected.to have_db_column(:type).of_type(:integer) }
+    it { is_expected.to have_db_column(:accomodation_type_id).of_type(:integer) }
     it { is_expected.to have_db_column(:city).of_type(:string) }
     it { is_expected.to have_db_column(:region).of_type(:string) }
     it { is_expected.to have_db_column(:rooms_available).of_type(:integer) }
