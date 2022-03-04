@@ -12,7 +12,7 @@ RSpec.describe Place, type: :model do
     it { is_expected.to have_db_column(:is_pets_allowed).of_type(:boolean) }
     it { is_expected.to have_db_column(:capacity).of_type(:integer).with_options(default: 2, null: false) }
     it { is_expected.to have_db_column(:additional_child_place).of_type(:integer).with_options(default: 0) }
-    it { is_expected.to have_db_column(:coordinator).of_type(:integer) }
+    it { is_expected.to have_db_column(:coordinator_id).of_type(:integer) }
     it { is_expected.to have_db_column(:status).of_type(:integer) }
     it { is_expected.to have_db_column(:price_per_day).of_type(:integer) }
     it { is_expected.to have_db_column(:price_per_month).of_type(:integer) }

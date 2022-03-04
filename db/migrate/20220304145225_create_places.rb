@@ -11,7 +11,7 @@ class CreatePlaces < ActiveRecord::Migration[6.1]
       t.boolean :is_pets_allowed
       t.integer :capacity, default: 2, null: false
       t.integer :additional_child_place, default: 0
-      t.integer :coordinator
+      t.integer :coordinator_id
       t.integer :status
       t.integer :price_per_day
       t.integer :price_per_month
