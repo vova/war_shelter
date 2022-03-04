@@ -20,3 +20,7 @@ Transport::TRANSPORT_NAMES.each do |name|
     Transport.create(transport_attributes) unless Transport.where(transport_attributes).any?
   end
 end
+
+AccommodationType::ACCOMMODATION_TYPES.each do |type|
+  AccommodationType.create(name: type) unless AccommodationType.where(name: type).any?
+end
