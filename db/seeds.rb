@@ -14,7 +14,7 @@ end
   UserStatus.create(status: status) unless UserStatus.where(status: status).any?
 end
 
-Transport::TRANSPORT_NAMES.each do |name|
+Transport.names.each_value do |name|
   [true, false].each do |company_transfer|
     transport_attributes = { name: name, company_transfer: company_transfer }
     Transport.create(transport_attributes) unless Transport.where(transport_attributes).any?
