@@ -21,6 +21,6 @@ Transport::TRANSPORT_NAMES.each do |name|
   end
 end
 
-AccommodationType::ACCOMMODATION_TyPES.each do |type|
+AccommodationType::ACCOMMODATION_TYPES.each do |type|
   AccommodationType.create(name: type) unless AccommodationType.where(name: type).any?
 end
