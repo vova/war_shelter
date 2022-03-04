@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_04_091904) do
+ActiveRecord::Schema.define(version: 2022_03_04_145225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,47 @@ ActiveRecord::Schema.define(version: 2022_03_04_091904) do
     t.index ["name"], name: "index_place_statuses_on_name", unique: true
   end
 
+  create_table "places", force: :cascade do |t|
+    t.string "name", limit: 100, null: false
+    t.integer "type"
+    t.string "city"
+    t.string "region"
+    t.integer "rooms_available"
+    t.integer "beds"
+    t.integer "kids_beds"
+    t.boolean "is_pets_allowed"
+    t.integer "capacity", default: 2, null: false
+    t.integer "additional_child_place", default: 0
+    t.integer "coordinator"
+    t.integer "status"
+    t.integer "price_per_day"
+    t.integer "price_per_month"
+    t.boolean "is_price_in_dollars"
+    t.string "address"
+    t.integer "distance_from_center"
+    t.datetime "available_since"
+    t.datetime "available_till"
+    t.string "phone"
+    t.string "phone2"
+    t.boolean "is_realtor"
+    t.string "contact_name"
+    t.string "geo"
+    t.string "website"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "transports", force: :cascade do |t|
     t.integer "name"
     t.boolean "company_transfer", default: false
     t.index ["name", "company_transfer"], name: "index_transports_on_name_and_company_transfer", unique: true
+  end
+
+  create_table "user_statuses", force: :cascade do |t|
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["status"], name: "index_user_statuses_on_status", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,10 +80,4 @@ ActiveRecord::Schema.define(version: 2022_03_04_091904) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "user_statuses", force: :cascade do |t|
-    t.string "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["status"], name: "index_user_statuses_on_status", unique: true
-  end
 end
