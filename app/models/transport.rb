@@ -1,6 +1,6 @@
 class Transport < ApplicationRecord
   enum name: {
-    car: 'Can',
+    car: 'Car',
     train: 'Train',
     bus: 'Bus',
     no_transport: 'No transport',
