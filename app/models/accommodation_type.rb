@@ -1,5 +1,5 @@
 class AccommodationType < ApplicationRecord
-  ACCOMMODATION_TyPES = %i[shelter hostel hotel private_house friendly_apartment rent_apartment]
+  ACCOMMODATION_TYPES = %i[shelter hostel hotel private_house friendly_apartment rent_apartment]
 
   enum name: ACCOMMODATION_TYPES
 
