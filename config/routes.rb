@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: "home#index"
 
   scope :module => 'buttercms' do
     get '/categories/:slug' => 'categories#show', :as => :buttercms_category
