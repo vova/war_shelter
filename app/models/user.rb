@@ -11,4 +11,6 @@ class User < ApplicationRecord
   belongs_to :accommodation_type,
              foreign_key: 'accommodation_pref', class_name: 'AccommodationType'
   belongs_to :transport
+
+  has_many :places, dependent: :destroy, inverse_of: :user, autosave: true
 end

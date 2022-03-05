@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe Place, type: :model do
   describe 'table columns' do
     it { is_expected.to have_db_column(:name).of_type(:string).with_options(limit: 100, null: false) }
-    it { is_expected.to have_db_column(:accomodation_type_id).of_type(:integer) }
+    it { is_expected.to have_db_column(:assigned_to).of_type(:integer) }
+    it { is_expected.to have_db_column(:accommodation_type_id).of_type(:integer) }
     it { is_expected.to have_db_column(:city).of_type(:string) }
     it { is_expected.to have_db_column(:region).of_type(:string) }
     it { is_expected.to have_db_column(:rooms_available).of_type(:integer) }
@@ -30,6 +31,19 @@ RSpec.describe Place, type: :model do
     it { is_expected.to have_db_column(:comment).of_type(:text) }
     it { is_expected.to have_db_column(:floor).of_type(:string) }
     it { is_expected.to have_db_column(:is_newbuilding).of_type(:boolean) }
+  end
+
+  describe 'indexes' do
+    it { is_expected.to have_db_index(:accommodation_type_id) }
+    it { is_expected.to have_db_index(:assigned_to) }
+  end
+
+  describe 'relations' do
+    it { is_expected.to belong_to(:user).inverse_of(:places) }
+    it { is_expected.to belong_to(:user).touch(true) }
+    it { is_expected.to belong_to(:user).class_name('User').with_foreign_key('assigned_to') }
+    it { is_expected.to belong_to(:coordinator).class_name('AdminUser').with_foreign_key('coordinator_id') }
+    it { is_expected.to belong_to(:accommodation_type).class_name('AccommodationType').with_foreign_key('accommodation_type_id') }
   end
 
   describe 'status column' do
