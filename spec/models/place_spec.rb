@@ -27,6 +27,9 @@ RSpec.describe Place, type: :model do
     it { is_expected.to have_db_column(:contact_name).of_type(:string) }
     it { is_expected.to have_db_column(:geo).of_type(:string) }
     it { is_expected.to have_db_column(:website).of_type(:string) }
+    it { is_expected.to have_db_column(:comment).of_type(:text) }
+    it { is_expected.to have_db_column(:floor).of_type(:string) }
+    it { is_expected.to have_db_column(:is_newbuilding).of_type(:boolean) }
   end
 
   describe 'status column' do
