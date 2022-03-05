@@ -24,3 +24,7 @@ end
 AccommodationType.names.each_value do |type|
   AccommodationType.create(name: type) unless AccommodationType.where(name: type).any?
 end
+
+AdminUser.create!(
+  email: 'admin@example.com', password: 'password', password_confirmation: 'password'
+) if Rails.env.development?
