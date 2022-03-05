@@ -14,6 +14,7 @@ gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 gem 'devise', '~> 4.8.1'
+gem 'activeadmin', '~> 2.10.1'
 
 group :development, :test do
   gem 'factory_bot_rails', '~> 6.2'

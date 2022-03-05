@@ -6,10 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-%i[available booked assigned not_available paid_in_advance].each do |status|
-  PlaceStatus.create(name: status) unless PlaceStatus.where(name: status).any?
-end
-
 %i[urgent_to_call accommodated in_office in_trip at_home no_response declined].each do |status|
   UserStatus.create(status: status) unless UserStatus.where(status: status).any?
 end
@@ -21,6 +17,10 @@ Transport.names.each_value do |name|
   end
 end
 
-AccommodationType::ACCOMMODATION_TYPES.each do |type|
+AccommodationType.names.each_value do |type|
   AccommodationType.create(name: type) unless AccommodationType.where(name: type).any?
 end
+
+AdminUser.create!(
+  email: 'admin@example.com', password: 'password', password_confirmation: 'password'
+) if Rails.env.development?
