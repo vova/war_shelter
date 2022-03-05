@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe AccommodationType, type: :model do
+  describe 'table columns' do
+    it { is_expected.to have_db_column(:name).of_type(:string) }
+    it { is_expected.to have_db_column(:room).of_type(:integer) }
+  end
+
   describe '#create' do
     subject(:create_accommodation_type) { AccommodationType.new(name: type_name) }
 

@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_05_081811) do
+ActiveRecord::Schema.define(version: 2022_03_05_134701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accommodation_types", force: :cascade do |t|
     t.string "name"
+    t.integer "room"
     t.index ["name"], name: "index_accommodation_types_on_name", unique: true
   end
 
@@ -79,6 +80,9 @@ ActiveRecord::Schema.define(version: 2022_03_05_081811) do
     t.string "website"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "comment"
+    t.string "floor"
+    t.boolean "is_newbuilding"
     t.index ["accomodation_type_id"], name: "index_places_on_accomodation_type_id"
   end
 
