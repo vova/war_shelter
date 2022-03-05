@@ -29,6 +29,7 @@ ActiveAdmin.register AdminUser do
       f.input :email
       f.input :phone
       f.input :phone2
+      f.input :vaccination
       f.input :password
       f.input :password_confirmation
     end
