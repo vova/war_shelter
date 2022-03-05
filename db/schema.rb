@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 2022_03_05_133054) do
 
   create_table "accommodation_types", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_accommodation_types_on_name", unique: true
   end
 
@@ -46,11 +48,6 @@ ActiveRecord::Schema.define(version: 2022_03_05_133054) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "place_statuses", force: :cascade do |t|
-    t.integer "name"
-    t.index ["name"], name: "index_place_statuses_on_name", unique: true
-  end
-
   create_table "places", force: :cascade do |t|
     t.string "name", limit: 100, null: false
     t.integer "accomodation_type_id"
@@ -66,7 +63,7 @@ ActiveRecord::Schema.define(version: 2022_03_05_133054) do
     t.integer "status", default: 0
     t.integer "price_per_day"
     t.integer "price_per_month"
-    t.boolean "is_price_in_dollars"
+    t.string "currency"
     t.string "address"
     t.integer "distance_from_center"
     t.datetime "available_since"

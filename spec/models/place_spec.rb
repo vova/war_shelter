@@ -16,7 +16,7 @@ RSpec.describe Place, type: :model do
     it { is_expected.to have_db_column(:status).of_type(:integer) }
     it { is_expected.to have_db_column(:price_per_day).of_type(:integer) }
     it { is_expected.to have_db_column(:price_per_month).of_type(:integer) }
-    it { is_expected.to have_db_column(:is_price_in_dollars).of_type(:boolean) }
+    it { is_expected.to have_db_column(:currency).of_type(:string) }
     it { is_expected.to have_db_column(:address).of_type(:string) }
     it { is_expected.to have_db_column(:distance_from_center).of_type(:integer) }
     it { is_expected.to have_db_column(:available_since).of_type(:datetime) }
@@ -57,8 +57,38 @@ RSpec.describe Place, type: :model do
     context 'when status is not present' do
       before { FactoryBot.create(:place)  }
 
-      it 'create valid Place with default value' do
+      it 'create valid Place with default status value' do
         expect(Place.last.available?).to be_truthy
+      end
+    end
+  end
+
+  describe 'currency column' do
+    subject(:create_place_with_currency) { FactoryBot.build(:place, currency: currency_name) }
+
+    context 'when currency is valid' do
+      Place.currencies.each_value do |currency|
+        let(:currency_name) { currency }
+
+        it "create valid Place with currency #{currency}" do
+          expect(create_place_with_currency.save).to be_truthy
+        end
+      end
+    end
+
+    context 'when currency is invalid' do
+      let(:currency_name) { :invalid_name }
+
+      it 'Place does not created' do
+        expect { create_place_with_currency }.to raise_error(ArgumentError)
+      end
+    end
+
+    context 'when currency is not present' do
+      before { FactoryBot.create(:place)  }
+
+      it 'create valid Place with default currency value' do
+        expect(Place.last.currency_uah?).to be_truthy
       end
     end
   end
