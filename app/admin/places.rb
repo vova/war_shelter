@@ -5,7 +5,7 @@ ActiveAdmin.register Place do
     :coordinator_id, :status, :price_per_day, :price_per_month, :currency,
     :address, :distance_from_center, :available_since, :available_till, :phone,
     :phone2, :is_realtor, :contact_name, :geo, :website, :comment, :floor,
-    :is_newbuilding
+    :is_newbuilding, :assigned_to
   )
 
   menu priority: 2
@@ -13,7 +13,7 @@ ActiveAdmin.register Place do
   controller do
     def scoped_collection
       end_of_association_chain.includes(
-        :coordinator, :accommodation_type
+        :coordinator, :accommodation_type, :user
       )
     end
   end
@@ -27,6 +27,11 @@ ActiveAdmin.register Place do
          label: 'Accommodation', as: :select,
          collection: lambda {
            AccommodationType.all.pluck(:name, :id)
+         }
+  filter :assigned_to,
+         label: 'User', as: :select,
+         collection: lambda {
+           User.all.pluck(:name, :id)
          }
   filter :name
   filter :city
@@ -91,6 +96,9 @@ ActiveAdmin.register Place do
     column :coordinator_id do |place|
       place.coordinator.email
     end
+    column :assigned_to do |place|
+      place.user.name
+    end
 
     actions
   end
@@ -126,6 +134,7 @@ ActiveAdmin.register Place do
       f.input :is_newbuilding
       f.input :coordinator_id, as: :select, collection: AdminUser.all.pluck(:email, :id)
       f.input :accommodation_type_id, as: :select, collection: AccommodationType.all.pluck(:name, :id)
+      f.input :assigned_to, as: :select, collection: User.all.pluck(:name, :id)
     end
 
     f.actions
@@ -166,6 +175,9 @@ ActiveAdmin.register Place do
       end
       row :accommodation_type_id do |place|
         place.accommodation_type.name
+      end
+      row :assigned_to do |plase|
+        place.user.name
       end
     end
 
