@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2022_03_05_133054) do
     t.integer "status", default: 0
     t.integer "price_per_day"
     t.integer "price_per_month"
-    t.boolean "is_price_in_dollars"
+    t.string "currency"
     t.string "address"
     t.integer "distance_from_center"
     t.datetime "available_since"

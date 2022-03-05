@@ -10,7 +10,6 @@ FactoryBot.define do
     capacity { 1 }
     price_per_day { 1 }
     price_per_month { 1 }
-    is_price_in_dollars { false }
     address { "MyString" }
     distance_from_center { 1 }
     available_since { "2022-03-04 16:52:25" }
