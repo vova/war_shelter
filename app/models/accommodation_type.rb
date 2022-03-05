@@ -5,6 +5,7 @@ class AccommodationType < ApplicationRecord
     hotel: 'Hotel',
     private_house: 'Private house',
     friendly_apartment: 'Friendly apartment',
-    rent_apartment: 'Rent apartment'
+    rent_apartment: 'Rent apartment',
+    room: 'Room with neighbours'
   }, _default: 'Shelter'
 end
