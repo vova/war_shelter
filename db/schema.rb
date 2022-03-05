@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_04_145225) do
+ActiveRecord::Schema.define(version: 2022_03_05_081811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,24 @@ ActiveRecord::Schema.define(version: 2022_03_04_145225) do
     t.string "unconfirmed_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status_id"
+    t.integer "coordinator_id"
+    t.string "from"
+    t.string "destination"
+    t.integer "adults"
+    t.integer "kids"
+    t.string "kids_comment"
+    t.boolean "pets"
+    t.string "phone"
+    t.string "phone2"
+    t.string "geo"
+    t.integer "accommodation_pref"
+    t.integer "transport_id"
+    t.datetime "date_arrival"
+    t.string "request_id"
+    t.boolean "vaccination"
+    t.text "comment"
+    t.string "name"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
