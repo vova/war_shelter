@@ -111,10 +111,7 @@ ActiveAdmin.register User do
       f.input(
         :date_arrival,
         as: :datepicker,
-        datepicker_options: {
-          min_date: '1900-01-01',
-          max_date: '+3D'
-        }
+        datepicker_options: { min_date: '2022-01-01' }
       )
     end
 
