@@ -5,7 +5,7 @@ RSpec.describe AccommodationType, type: :model do
     subject(:create_accommodation_type) { AccommodationType.new(name: type_name) }
 
     context 'when name field is valid' do
-      AccommodationType::ACCOMMODATION_TYPES.each do |type|
+      AccommodationType.names.each_value do |type|
         let(:type_name) { type }
 
         it "creates valid AccommodationType with name: #{type}" do
@@ -23,7 +23,7 @@ RSpec.describe AccommodationType, type: :model do
     end
 
     context 'when AccommodationType already exists' do
-      let(:type_name) { AccommodationType::ACCOMMODATION_TYPES[0] }
+      let(:type_name) { AccommodationType.names.values.first }
 
       before { AccommodationType.create(name: type_name) }
 
