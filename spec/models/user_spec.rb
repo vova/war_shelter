@@ -37,4 +37,15 @@ RSpec.describe User, type: :model do
       expect(user.valid_password?('password')).to be_truthy
     end
   end
+
+  describe 'validations' do
+    context 'duplicate email' do
+      subject { create(:admin_user) }
+      let(:duplicate) { subject.dup }
+      it 'should not create user with the same email' do
+        expect { duplicate.save! }.to raise_error(ActiveRecord::RecordInvalid)
+        expect(duplicate.errors.messages[:email].first).to match(/already been taken/)
+      end
+    end
+  end
 end
