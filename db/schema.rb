@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_04_145225) do
+ActiveRecord::Schema.define(version: 2022_03_05_001918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,11 +18,6 @@ ActiveRecord::Schema.define(version: 2022_03_04_145225) do
   create_table "accommodation_types", force: :cascade do |t|
     t.integer "name"
     t.index ["name"], name: "index_accommodation_types_on_name", unique: true
-  end
-
-  create_table "place_statuses", force: :cascade do |t|
-    t.integer "name"
-    t.index ["name"], name: "index_place_statuses_on_name", unique: true
   end
 
   create_table "places", force: :cascade do |t|
@@ -37,7 +32,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_145225) do
     t.integer "capacity", default: 2, null: false
     t.integer "additional_child_place", default: 0
     t.integer "coordinator_id"
-    t.integer "status"
+    t.integer "status", default: 0
     t.integer "price_per_day"
     t.integer "price_per_month"
     t.boolean "is_price_in_dollars"

@@ -28,4 +28,35 @@ RSpec.describe Place, type: :model do
     it { is_expected.to have_db_column(:geo).of_type(:string) }
     it { is_expected.to have_db_column(:website).of_type(:string) }
   end
+
+  describe 'status column' do
+    subject(:create_place_with_status) { FactoryBot.build(:place, status: status_name) }
+    STATUSES = %i[available booked assigned not_available paid_in_advance].freeze
+
+    context 'when status is valid' do
+      STATUSES.each do |status|
+        let(:status_name) { status }
+
+        it "create valid Place with status #{status}" do
+          expect(create_place_with_status.save).to be_truthy
+        end
+      end
+    end
+
+    context 'when status is invalid' do
+      let(:status_name) { :invalid_name }
+
+      it 'Place does not created' do
+        expect { create_place_with_status }.to raise_error(ArgumentError)
+      end
+    end
+
+    context 'when status is not present' do
+      before { FactoryBot.create(:place)  }
+
+      it 'create valid Place with default value' do
+        expect(Place.last.available?).to be_truthy
+      end
+    end
+  end
 end
