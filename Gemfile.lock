@@ -227,6 +227,7 @@ GEM
       rspec-support (~> 3.10)
     rspec-support (3.11.0)
     ruby2_keywords (0.0.5)
+    ruby_http_client (3.5.4)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -238,6 +239,8 @@ GEM
       sprockets-rails
       tilt
     semantic_range (3.0.0)
+    sendgrid-ruby (6.5.2)
+      ruby_http_client (~> 3.4)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
     simplecov (0.21.2)
@@ -302,6 +305,7 @@ DEPENDENCIES
   rails (~> 6.1.4, >= 6.1.4.4)
   rspec-rails (~> 5.1.0)
   sass-rails (>= 6)
+  sendgrid-ruby (~> 6.5.1)
   shoulda-matchers (~> 5.1)
   simplecov (~> 0.21)
   spring

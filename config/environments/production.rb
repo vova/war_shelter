@@ -99,6 +99,18 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: ENV['ACTION_MAILER_DEFAULT_HOST'], port: 3000 }
 
+  config.action_mailer.delivery_method = :smtp
+
+  ActionMailer::Base.smtp_settings = {
+    user_name: ENV['SENDGRID_SMTP_USERNAME'],
+    password: ENV['SENDGRID_SMTP_PASSWORD'],
+    domain: ENV['SENDGRID_SMTP_DOMAIN'],
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
   # middleware. The `delay` is used to determine how long to wait after a write

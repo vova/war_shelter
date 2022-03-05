@@ -46,4 +46,16 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  ActionMailer::Base.smtp_settings = {
+    user_name: ENV['SENDGRID_SMTP_USERNAME'],
+    password: ENV['SENDGRID_SMTP_PASSWORD'],
+    domain: ENV['SENDGRID_SMTP_DOMAIN'],
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
+  config.action_mailer.delivery_method = :smtp
 end
