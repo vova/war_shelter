@@ -7,7 +7,7 @@ require 'rails_helper'
 RSpec.describe UserStatus, type: :model do
   USER_STATUSES = %i[urgent_to_call accommodated in_office in_trip at_home no_response declined].freeze
   describe 'attributes' do
-    subject { described_class.new(status: STATUSES[0]) }
+    subject { described_class.new(status: USER_STATUSES[0]) }
 
     it { is_expected.to have_db_column(:status).of_type(:string) }
   end

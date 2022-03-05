@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :place do
     name { "MyString" }
-    type { 1 }
     city { "MyString" }
     region { "MyString" }
     rooms_available { 1 }
@@ -9,7 +8,6 @@ FactoryBot.define do
     kids_beds { 1 }
     is_pets_allowed { false }
     capacity { 1 }
-    status { 1 }
     price_per_day { 1 }
     price_per_month { 1 }
     is_price_in_dollars { false }
