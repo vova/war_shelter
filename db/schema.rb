@@ -83,8 +83,10 @@ ActiveRecord::Schema.define(version: 2022_03_05_001918) do
   end
 
   create_table "transports", force: :cascade do |t|
-    t.integer "name"
+    t.string "name"
     t.boolean "company_transfer", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["name", "company_transfer"], name: "index_transports_on_name_and_company_transfer", unique: true
   end
 
