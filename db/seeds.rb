@@ -17,6 +17,10 @@ Transport::TRANSPORT_NAMES.each do |name|
   end
 end
 
-AccommodationType::ACCOMMODATION_TYPES.each do |type|
+AccommodationType.names.each_value do |type|
   AccommodationType.create(name: type) unless AccommodationType.where(name: type).any?
 end
+
+AdminUser.create!(
+  email: 'admin@example.com', password: 'password', password_confirmation: 'password'
+) if Rails.env.development?
