@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :transport do
-    name { Transport::TRANSPORT_NAMES[0] }
+    name { Transport.names.values.first }
   end
 end

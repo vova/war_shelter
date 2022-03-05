@@ -9,7 +9,7 @@ RSpec.describe Transport, type: :model do
     subject(:create_transport) { Transport.new(name: transport_name) }
 
     context 'when name field is valid' do
-      Transport::TRANSPORT_NAMES.each do |name|
+      Transport.names.each_value do |name|
         let(:transport_name) { name }
 
         it "creates valid Transport with name: #{name}" do
@@ -27,7 +27,7 @@ RSpec.describe Transport, type: :model do
     end
 
     context 'when Transport name already exists' do
-      let(:transport_name) { Transport::TRANSPORT_NAMES[0] }
+      let(:transport_name) { Transport.names.values.first }
 
       before { Transport.create(name: transport_name) }
 
