@@ -1,24 +1,25 @@
 FactoryBot.define do
   factory :user do
-    name {Faker::Name.name}
-    email {Faker::Internet.email}
-    password {Faker::Internet.password}
+    name { FFaker::Name.name }
+    email { FFaker::Internet.email }
+    password { 'password' }
+    password_confirmation { 'password' }
     status_id { 1 }
     coordinator_id { 1 }
-    from { Faker::Address.city }
-    destination { Faker::Address.full_address }
+    from { FFaker::Address.city }
+    destination { FFaker::Address.city }
     adults { 2 }
     kids { nil }
     kids_comment { 'Kids comment' }
     pets { false }
-    phone { Faker::PhoneNumber.phone_number_with_country_code }
-    phone2 { Faker::PhoneNumber.phone_number_with_country_code }
+    phone { FFaker::PhoneNumber.phone_number }
+    phone2 { FFaker::PhoneNumber.phone_number }
     geo { 'UA' }
     accommodation_pref { 3 }
     transport_id { 1 }
-    date_arrival { Faker::Date.forward(days: 2) }
+    date_arrival { Time.now + 2.days }
     request_id { '2' }
     vaccination { true }
-    comment { Faker::Lorem.sentence }
+    comment { FFaker::Lorem.sentence }
   end
 end

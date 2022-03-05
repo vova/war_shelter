@@ -26,4 +26,15 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_db_column(:vaccination).of_type(:boolean) }
     it { is_expected.to have_db_column(:comment).of_type(:text) }
   end
+
+  describe 'devise' do
+    let(:user) { build(:user) }
+    it "has a valid factory" do
+        expect(user).to be_valid
+    end
+
+    it 'is database authenticable' do
+      expect(user.valid_password?('password')).to be_truthy
+    end
+  end
 end
