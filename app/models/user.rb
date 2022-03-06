@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
 
+  has_paper_trail
+
   belongs_to :user_status,
              foreign_key: 'status_id', class_name: 'UserStatus'
   belongs_to :coordinator,

@@ -7,6 +7,8 @@ class Place < ApplicationRecord
              foreign_key: 'accommodation_type_id',
              class_name: 'AccommodationType'
 
+  has_paper_trail
+
   enum status: %i[available booked assigned not_available paid_in_advance]
 
   enum currency: {
