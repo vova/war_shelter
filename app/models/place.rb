@@ -1,4 +1,6 @@
 class Place < ApplicationRecord
+  has_paper_trail
+
   enum status: %i[available booked assigned not_available paid_in_advance]
 
   enum currency: {

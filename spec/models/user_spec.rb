@@ -48,4 +48,28 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe 'Paper Trail', versioning: true do
+    context 'when PaperTrail enabled' do
+      before { PaperTrail.request.enable_model(User) }
+      let(:subject) { FactoryBot.create :user }
+
+      it 'creates versions' do
+        expect(subject.versions.count).to eq 1
+      end
+
+      it 'does not include password attributes' do
+        expect(subject.versions.last.object_changes.exclude?('password')).to be_truthy
+      end
+    end
+
+    context 'when PaperTrail disabled' do
+      before { PaperTrail.request.disable_model(User) }
+      let(:untracked_subject) { FactoryBot.create :user }
+
+      it 'does not create versions' do
+        expect(untracked_subject.versions.count).to eq 0
+      end
+    end
+  end
 end
