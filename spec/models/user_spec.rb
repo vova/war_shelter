@@ -27,7 +27,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_db_column(:comment).of_type(:text) }
   end
 
-  describe 'devise' do
+  describe 'registration' do
     let(:user) { build(:user) }
     it "has a valid factory" do
         expect(user).to be_valid
@@ -35,6 +35,41 @@ RSpec.describe User, type: :model do
 
     it 'is database authenticable' do
       expect(user.valid_password?('password')).to be_truthy
+    end
+  end
+
+  describe 'validations' do
+    context 'duplicate email' do
+      subject { create(:user) }
+      let(:duplicate) { subject.dup }
+      it 'should not create user with the same email' do
+        expect { duplicate.save! }.to raise_error(ActiveRecord::RecordInvalid)
+        expect(duplicate.errors.messages[:email].first).to match(/already been taken/)
+      end
+    end
+  end
+
+  describe 'Paper Trail', versioning: true do
+    context 'when PaperTrail enabled' do
+      before { PaperTrail.request.enable_model(User) }
+      let(:subject) { FactoryBot.create :user }
+
+      it 'creates versions' do
+        expect(subject.versions.count).to eq 1
+      end
+
+      it 'does not include password attributes' do
+        expect(subject.versions.last.object_changes.exclude?('password')).to be_truthy
+      end
+    end
+
+    context 'when PaperTrail disabled' do
+      before { PaperTrail.request.disable_model(User) }
+      let(:untracked_subject) { FactoryBot.create :user }
+
+      it 'does not create versions' do
+        expect(untracked_subject.versions.count).to eq 0
+      end
     end
   end
 end
