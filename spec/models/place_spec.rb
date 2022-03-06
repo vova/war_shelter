@@ -50,7 +50,7 @@ RSpec.describe Place, type: :model do
     it { is_expected.to belong_to(:accommodation_type).class_name('AccommodationType').with_foreign_key('accommodation_type_id') }
   end
 
-  before do
+  let(:place) do
     FactoryBot.create(
       :place,
       assigned_to: user.id,
@@ -89,6 +89,8 @@ RSpec.describe Place, type: :model do
     end
 
     context 'when status is not present' do
+      before { place }
+
       it 'create valid Place with default status value' do
         expect(Place.last.available?).to be_truthy
       end
@@ -125,6 +127,8 @@ RSpec.describe Place, type: :model do
     end
 
     context 'when currency is not present' do
+      before { place }
+
       it 'create valid Place with default currency value' do
         expect(Place.last.currency_uah?).to be_truthy
       end
@@ -134,7 +138,8 @@ RSpec.describe Place, type: :model do
   describe 'Paper Trail', versioning: true do
     context 'when PaperTrail enabled' do
       before { PaperTrail.request.enable_model(Place) }
-      let(:subject) { FactoryBot.create :place }
+
+      let(:subject) { place }
 
       it 'creates versions' do
         expect(subject.versions.count).to eq 1
@@ -143,7 +148,8 @@ RSpec.describe Place, type: :model do
 
     context 'when PaperTrail disabled' do
       before { PaperTrail.request.disable_model(Place) }
-      let(:untracked_subject) { FactoryBot.create :place }
+
+      let(:untracked_subject) { place }
 
       it 'does not create versions' do
         expect(untracked_subject.versions.count).to eq 0
