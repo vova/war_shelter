@@ -1,6 +1,10 @@
 require 'rails_helper'
+require 'pry'
 
 RSpec.describe Place, type: :model do
+  let(:user) { FactoryBot.create(:user) }
+  let(:coordinator){ FactoryBot.create(:admin_user) }
+
   describe 'table columns' do
     it { is_expected.to have_db_column(:name).of_type(:string).with_options(limit: 100, null: false) }
     it { is_expected.to have_db_column(:assigned_to).of_type(:integer) }
@@ -46,12 +50,28 @@ RSpec.describe Place, type: :model do
     it { is_expected.to belong_to(:accommodation_type).class_name('AccommodationType').with_foreign_key('accommodation_type_id') }
   end
 
+  before do
+    FactoryBot.create(
+      :place,
+      assigned_to: user.id,
+      coordinator_id: coordinator.id,
+      accommodation_type_id: user.accommodation_type.id
+    )
+  end
+
   describe 'status column' do
-    subject(:create_place_with_status) { FactoryBot.build(:place, status: status_name) }
-    STATUSES = %i[available booked assigned not_available paid_in_advance].freeze
+    subject(:create_place_with_status) do
+      FactoryBot.build(
+        :place,
+        status: status_name,
+        assigned_to: user.id,
+        coordinator_id: coordinator.id,
+        accommodation_type_id: user.accommodation_type.id
+      )
+    end
 
     context 'when status is valid' do
-      STATUSES.each do |status|
+      Place.statuses.each_key do |status|
         let(:status_name) { status }
 
         it "create valid Place with status #{status}" do
@@ -69,8 +89,6 @@ RSpec.describe Place, type: :model do
     end
 
     context 'when status is not present' do
-      before { FactoryBot.create(:place)  }
-
       it 'create valid Place with default status value' do
         expect(Place.last.available?).to be_truthy
       end
@@ -78,7 +96,15 @@ RSpec.describe Place, type: :model do
   end
 
   describe 'currency column' do
-    subject(:create_place_with_currency) { FactoryBot.build(:place, currency: currency_name) }
+    subject(:create_place_with_currency) do
+      FactoryBot.build(
+        :place,
+        currency: currency_name,
+        assigned_to: user.id,
+        coordinator_id: coordinator.id,
+        accommodation_type_id: user.accommodation_type.id
+      )
+    end
 
     context 'when currency is valid' do
       Place.currencies.each_value do |currency|
@@ -99,8 +125,6 @@ RSpec.describe Place, type: :model do
     end
 
     context 'when currency is not present' do
-      before { FactoryBot.create(:place)  }
-
       it 'create valid Place with default currency value' do
         expect(Place.last.currency_uah?).to be_truthy
       end
