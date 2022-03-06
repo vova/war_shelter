@@ -40,7 +40,7 @@ RSpec.describe User, type: :model do
 
   describe 'validations' do
     context 'duplicate email' do
-      subject { create(:admin_user) }
+      subject { create(:user) }
       let(:duplicate) { subject.dup }
       it 'should not create user with the same email' do
         expect { duplicate.save! }.to raise_error(ActiveRecord::RecordInvalid)
