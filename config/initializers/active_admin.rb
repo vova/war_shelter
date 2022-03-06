@@ -328,3 +328,11 @@ ActiveAdmin.setup do |config|
 
   config.use_webpacker = true
 end
+
+ActiveAdmin::ResourceController.class_eval do
+  before_action :set_paper_trail_whodunnit
+
+  def current_user
+    current_admin_user
+  end
+end
