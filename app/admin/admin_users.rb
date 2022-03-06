@@ -16,6 +16,18 @@ ActiveAdmin.register AdminUser do
     actions
   end
 
+  show do
+    panel "Coordinator" do
+      table_for admin_user do
+        column :name
+        column :email
+        column 'Phone numbers' do |admin_user|
+          "#{admin_user.phone}\n#{admin_user.phone2}"
+        end
+      end
+    end
+  end
+
   filter :name
   filter :email
   filter :phone_or_phone2, as: :string

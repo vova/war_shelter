@@ -44,8 +44,7 @@ ActiveAdmin.register User do
   filter :adults
   filter :kids
   filter :pets
-  filter :phone
-  filter :phone2
+  filter :phone_or_phone2, as: :string
   filter :vaccination
   filter :date_arrival
 
@@ -59,16 +58,17 @@ ActiveAdmin.register User do
     column :kids
     column :kids_comment
     column :pets
-    column :phone
-    column :phone2
+    column 'Phone numbers' do |user|
+      "#{user.phone}\n#{user.phone2}"
+    end
     column :geo
     column :vaccination
     column :comment
     column :status_id do |user|
-      user.user_status.status
+       UserStatus.statuses.value user.user_status.status
     end
     column :coordinator_id do |user|
-      user.coordinator.email
+      link_to(user.coordinator.name, admin_admin_user_path(user.coordinator))
     end
     column :accommodation_pref do |user|
       user.accommodation_type.name
