@@ -20,5 +20,7 @@ FactoryBot.define do
     contact_name { "MyString" }
     geo { "MyString" }
     website { "MyString" }
+    association :accommodation_type, factory: :accommodation_type
+    association :coordinator, factory: :admin_user
   end
 end
