@@ -27,7 +27,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_db_column(:comment).of_type(:text) }
   end
 
-  describe 'devise' do
+  describe 'registration' do
     let(:user) { build(:user) }
     it "has a valid factory" do
         expect(user).to be_valid
@@ -35,6 +35,17 @@ RSpec.describe User, type: :model do
 
     it 'is database authenticable' do
       expect(user.valid_password?('password')).to be_truthy
+    end
+  end
+
+  describe 'validations' do
+    context 'duplicate email' do
+      subject { create(:user) }
+      let(:duplicate) { subject.dup }
+      it 'should not create user with the same email' do
+        expect { duplicate.save! }.to raise_error(ActiveRecord::RecordInvalid)
+        expect(duplicate.errors.messages[:email].first).to match(/already been taken/)
+      end
     end
   end
 end
