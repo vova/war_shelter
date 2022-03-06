@@ -92,4 +92,24 @@ RSpec.describe Place, type: :model do
       end
     end
   end
+
+  describe 'Paper Trail', versioning: true do
+    context 'when PaperTrail enabled' do
+      before { PaperTrail.request.enable_model(Place) }
+      let(:subject) { FactoryBot.create :place }
+
+      it 'creates versions' do
+        expect(subject.versions.count).to eq 1
+      end
+    end
+
+    context 'when PaperTrail disabled' do
+      before { PaperTrail.request.disable_model(Place) }
+      let(:untracked_subject) { FactoryBot.create :place }
+
+      it 'does not create versions' do
+        expect(untracked_subject.versions.count).to eq 0
+      end
+    end
+  end
 end
