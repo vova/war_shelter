@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_05_184643) do
+ActiveRecord::Schema.define(version: 2022_03_05_184907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2022_03_05_184643) do
 
   create_table "places", force: :cascade do |t|
     t.string "name", limit: 100, null: false
-    t.integer "accomodation_type_id"
+    t.integer "accommodation_type_id"
     t.string "city"
     t.string "region"
     t.integer "rooms_available"
@@ -83,7 +83,9 @@ ActiveRecord::Schema.define(version: 2022_03_05_184643) do
     t.text "comment"
     t.string "floor"
     t.boolean "is_newbuilding"
-    t.index ["accomodation_type_id"], name: "index_places_on_accomodation_type_id"
+    t.integer "assigned_to"
+    t.index ["accommodation_type_id"], name: "index_places_on_accommodation_type_id"
+    t.index ["assigned_to"], name: "index_places_on_assigned_to"
   end
 
   create_table "transports", force: :cascade do |t|
