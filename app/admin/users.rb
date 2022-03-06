@@ -15,6 +15,17 @@ ActiveAdmin.register User do
         :accommodation_type, :transport
       )
     end
+
+    def update_resource(object, attributes)
+      attributes.each do |attr|
+        if attr[:password].blank? && attr[:password_confirmation].blank?
+          attr.delete :password
+          attr.delete :password_confirmation
+        end
+      end
+
+      super
+    end
   end
 
   filter :status_id,
