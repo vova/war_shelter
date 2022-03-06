@@ -27,6 +27,20 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_db_column(:comment).of_type(:text) }
   end
 
+  describe 'indexes' do
+    it { is_expected.to have_db_index(:confirmation_token) }
+    it { is_expected.to have_db_index(:email) }
+    it { is_expected.to have_db_index(:reset_password_token) }
+  end
+
+  describe 'relations' do
+    it { is_expected.to belong_to(:user_status).class_name('UserStatus').with_foreign_key('status_id') }
+    it { is_expected.to belong_to(:coordinator).class_name('AdminUser').with_foreign_key('coordinator_id') }
+    it { is_expected.to belong_to(:accommodation_type).class_name('AccommodationType').with_foreign_key('accommodation_pref') }
+    it { is_expected.to belong_to(:transport) }
+    it { is_expected.to have_many(:places).dependent(:destroy).inverse_of(:user).autosave(true) }
+  end
+
   describe 'registration' do
     let(:user) { build(:user) }
     it "has a valid factory" do

@@ -1,9 +1,14 @@
 require 'rails_helper'
+require 'pry'
 
 RSpec.describe Place, type: :model do
+  let(:user) { FactoryBot.create(:user) }
+  let(:coordinator){ FactoryBot.create(:admin_user) }
+
   describe 'table columns' do
     it { is_expected.to have_db_column(:name).of_type(:string).with_options(limit: 100, null: false) }
-    it { is_expected.to have_db_column(:accomodation_type_id).of_type(:integer) }
+    it { is_expected.to have_db_column(:assigned_to).of_type(:integer) }
+    it { is_expected.to have_db_column(:accommodation_type_id).of_type(:integer) }
     it { is_expected.to have_db_column(:city).of_type(:string) }
     it { is_expected.to have_db_column(:region).of_type(:string) }
     it { is_expected.to have_db_column(:rooms_available).of_type(:integer) }
@@ -32,12 +37,41 @@ RSpec.describe Place, type: :model do
     it { is_expected.to have_db_column(:is_newbuilding).of_type(:boolean) }
   end
 
+  describe 'indexes' do
+    it { is_expected.to have_db_index(:accommodation_type_id) }
+    it { is_expected.to have_db_index(:assigned_to) }
+  end
+
+  describe 'relations' do
+    it { is_expected.to belong_to(:user).inverse_of(:places) }
+    it { is_expected.to belong_to(:user).touch(true) }
+    it { is_expected.to belong_to(:user).class_name('User').with_foreign_key('assigned_to') }
+    it { is_expected.to belong_to(:coordinator).class_name('AdminUser').with_foreign_key('coordinator_id') }
+    it { is_expected.to belong_to(:accommodation_type).class_name('AccommodationType').with_foreign_key('accommodation_type_id') }
+  end
+
+  let(:place) do
+    FactoryBot.create(
+      :place,
+      assigned_to: user.id,
+      coordinator_id: coordinator.id,
+      accommodation_type_id: user.accommodation_type.id
+    )
+  end
+
   describe 'status column' do
-    subject(:create_place_with_status) { FactoryBot.build(:place, status: status_name) }
-    STATUSES = %i[available booked assigned not_available paid_in_advance].freeze
+    subject(:create_place_with_status) do
+      FactoryBot.build(
+        :place,
+        status: status_name,
+        assigned_to: user.id,
+        coordinator_id: coordinator.id,
+        accommodation_type_id: user.accommodation_type.id
+      )
+    end
 
     context 'when status is valid' do
-      STATUSES.each do |status|
+      Place.statuses.each_key do |status|
         let(:status_name) { status }
 
         it "create valid Place with status #{status}" do
@@ -55,7 +89,7 @@ RSpec.describe Place, type: :model do
     end
 
     context 'when status is not present' do
-      before { FactoryBot.create(:place)  }
+      before { place }
 
       it 'create valid Place with default status value' do
         expect(Place.last.available?).to be_truthy
@@ -64,7 +98,15 @@ RSpec.describe Place, type: :model do
   end
 
   describe 'currency column' do
-    subject(:create_place_with_currency) { FactoryBot.build(:place, currency: currency_name) }
+    subject(:create_place_with_currency) do
+      FactoryBot.build(
+        :place,
+        currency: currency_name,
+        assigned_to: user.id,
+        coordinator_id: coordinator.id,
+        accommodation_type_id: user.accommodation_type.id
+      )
+    end
 
     context 'when currency is valid' do
       Place.currencies.each_value do |currency|
@@ -85,7 +127,7 @@ RSpec.describe Place, type: :model do
     end
 
     context 'when currency is not present' do
-      before { FactoryBot.create(:place)  }
+      before { place }
 
       it 'create valid Place with default currency value' do
         expect(Place.last.currency_uah?).to be_truthy
@@ -96,7 +138,8 @@ RSpec.describe Place, type: :model do
   describe 'Paper Trail', versioning: true do
     context 'when PaperTrail enabled' do
       before { PaperTrail.request.enable_model(Place) }
-      let(:subject) { FactoryBot.create :place }
+
+      let(:subject) { place }
 
       it 'creates versions' do
         expect(subject.versions.count).to eq 1
@@ -105,7 +148,8 @@ RSpec.describe Place, type: :model do
 
     context 'when PaperTrail disabled' do
       before { PaperTrail.request.disable_model(Place) }
-      let(:untracked_subject) { FactoryBot.create :place }
+
+      let(:untracked_subject) { place }
 
       it 'does not create versions' do
         expect(untracked_subject.versions.count).to eq 0
