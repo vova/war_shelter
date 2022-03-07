@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
 
+  include EmailValidations
+
   has_paper_trail
 
   belongs_to :user_status,
