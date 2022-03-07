@@ -12,8 +12,10 @@ FactoryBot.define do
     kids { nil }
     kids_comment { 'Kids comment' }
     pets { false }
-    phone { FFaker::PhoneNumber.phone_number }
-    phone2 { FFaker::PhoneNumber.phone_number }
+    phone do
+      FFaker::PhoneNumberUA.international_mobile_phone_number.gsub(/[\s-]/, '')
+    end
+    phone2 { '' }
     geo { 'UA' }
     accommodation_type
     transport

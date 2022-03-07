@@ -5,6 +5,7 @@ class AdminUser < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   include EmailValidations
+  include PhoneValidations
 
   has_paper_trail
 end

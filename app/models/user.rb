@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   include EmailValidations
+  include PhoneValidations
 
   has_paper_trail
 
