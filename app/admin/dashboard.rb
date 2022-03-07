@@ -34,8 +34,10 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
     
-  end # content
-  sidebar :help do
-    "Some important information for today. Also email and phone number"
+  end
+  sidebar :statistics do
+    "This is a placeholder for daily statistics.
+    Places available:
+    People to call:"
   end
 end
