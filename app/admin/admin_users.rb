@@ -1,6 +1,20 @@
 ActiveAdmin.register AdminUser, as: "Coordinators" do
   menu priority: 3
-  permit_params :email, :password, :password_confirmation
+  permit_params :email, :password, :password_confirmation,
+                :name, :phone, :phone2
+
+  controller do
+    def update_resource(object, attributes)
+      attributes.each do |attr|
+        if attr[:password].blank? && attr[:password_confirmation].blank?
+          attr.delete :password
+          attr.delete :password_confirmation
+        end
+      end
+
+      super
+    end
+  end
 
   index do
     selectable_column
