@@ -297,6 +297,7 @@ DEPENDENCIES
   factory_bot_rails (~> 6.2)
   ffaker (~> 2.20)
   jbuilder (~> 2.7)
+  kaminari (~> 1.2.2)
   listen (~> 3.3)
   paper_trail
   pg (~> 1.1)

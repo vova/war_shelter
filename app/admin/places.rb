@@ -4,8 +4,7 @@ ActiveAdmin.register Place do
     :beds, :kids_beds, :is_pets_allowed, :capacity, :additional_child_place,
     :coordinator_id, :status, :price_per_day, :price_per_month, :currency,
     :address, :distance_from_center, :available_since, :available_till, :phone,
-    :phone2, :is_realtor, :contact_name, :geo, :website, :comment, :floor,
-    :is_newbuilding, :assigned_to
+    :phone2, :is_realtor, :contact_name, :geo, :website, :comment, :floor, :is_newbuilding, :assigned_to
   )
 
   menu priority: 2
