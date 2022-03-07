@@ -19,4 +19,6 @@ class Place < ApplicationRecord
     eur: 'EUR',
     pln: 'PLN'
   }, _default: 'UAH', _prefix: :currency
+
+  scope :to_pay_attention, lambda { |current_admin_user| where(coordinator_id: current_admin_user.id).where.not(status: :not_available) }
 end

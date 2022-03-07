@@ -18,4 +18,5 @@ class User < ApplicationRecord
   belongs_to :transport
 
   has_many :places, dependent: :destroy, inverse_of: :user, autosave: true
+  scope :to_pay_attention, lambda { |current_admin_user| where(coordinator_id: current_admin_user.id) }
 end
