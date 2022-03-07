@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-%i[urgent_to_call accommodated in_office in_trip at_home no_response declined].each do |status|
+UserStatus.statuses.each do |_, status|
   UserStatus.create(status: status) unless UserStatus.where(status: status).any?
 end
 
@@ -22,5 +22,9 @@ AccommodationType.names.each_value do |type|
 end
 
 AdminUser.create!(
-  email: 'admin@example.com', password: 'password', password_confirmation: 'password'
+  name: 'Vasya',
+  email: 'admin@example.com',
+  password: 'password',
+  password_confirmation: 'password',
+  phone: '+380981111111'
 ) if Rails.env.development?

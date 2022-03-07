@@ -2,13 +2,21 @@ class Transport < ApplicationRecord
   BY_COMPANY = 'Provided by company'
   NOT_BY_COMPANY = 'Not provided by company'
 
-  enum name: {
-    car: 'Car',
-    train: 'Train',
-    bus: 'Bus',
-    no_transport: 'No transport',
-    unknown: 'Unknown'
-  }, _default: 'Car'
+  CAR = 'Car'
+  TRAIN = 'Train'
+  BUS = 'Bus'
+  NO_TRANSPORT = 'No transport'
+  UNKNOWN = 'Unknown'
+
+  TRANSPORTS = {
+    'Car' => CAR,
+    'Train' => TRAIN,
+    'Bus' => BUS,
+    'No transport' => NO_TRANSPORT,
+    'Unknown' => UNKNOWN
+  }
+
+  enum name: TRANSPORTS, _default: CAR
 
   def self.to_select_collection
     all.map do |tr|
