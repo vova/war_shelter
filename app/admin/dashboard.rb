@@ -6,21 +6,24 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel "Users to pay attention" do
-          table_for User.where(coordinator_id: current_admin_user.id).map do |t|
-            t.column('name') { |user| link_to(user.name, admin_user_path(user)) }
-            t.column('email') { |user| user.email }
-            t.column('status') { |user| user.user_status.status }
-            t.column('people') { |user| "#{user.adults + user.kids}, #{user.kids} child(ren)" }
-            t.column('pets') { |user| user.pets }
-            t.column('Phone numbers') { |user| user.phone + user.phone2 }
+          paginated_collection(User.to_pay_attention(current_admin_user).page(params[:page]).per(10), download_links: false) do
+            table_for collection do |t|
+              t.column('name') { |user| link_to(user.name, admin_user_path(user)) }
+              t.column('email') { |user| user.email }
+              t.column('status') { |user| user.user_status.status }
+              t.column('people') { |user| "#{user.adults + user.kids}total, #{user.kids} kid(s)" }
+              t.column('pets') { |user| user.pets }
+              t.column('Phone numbers') { |user| user.phone + user.phone2 }
+            end
           end
         end
       end
     end
 
     columns do
-        panel "Places to pay attention" do
-          table_for Place.where(coordinator_id: current_admin_user.id).map do |t|
+      panel "Places to pay attention" do
+        paginated_collection(Place.to_pay_attention(current_admin_user).page(params[:page]).per(5), download_links: false) do
+          table_for collection do |t|
             t.column('name') { |place| link_to(place.name, admin_place_path(place)) }
             t.column('city') { |place| place.city }
             t.column('address') { |place| place.address }
@@ -33,8 +36,9 @@ ActiveAdmin.register_page "Dashboard" do
           end
         end
       end
-    
+    end
   end
+
   sidebar :statistics do
     "This is a placeholder for daily statistics.
     Places available:
