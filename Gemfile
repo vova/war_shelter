@@ -17,6 +17,7 @@ gem 'redcarpet'
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
+gem 'pg_search', '~> 2.3.6'
 
 group :development, :test do
   gem 'factory_bot_rails', '~> 6.2'
