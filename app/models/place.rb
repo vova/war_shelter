@@ -1,4 +1,6 @@
 class Place < ApplicationRecord
+  include PhoneValidations
+
   belongs_to :user, inverse_of: :places, touch: true,
              foreign_key: 'assigned_to', class_name: 'User'
   belongs_to :coordinator,
