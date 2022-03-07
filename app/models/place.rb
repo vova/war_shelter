@@ -56,4 +56,10 @@ class Place < ApplicationRecord
   }.freeze
 
   pg_search_scope :super_search, SUPER_SEARCH_CONFIG
+
+  scope :content_matches, ->(term) { super_search(term) }
+
+  def self.ransackable_scopes(_auth_object = nil)
+    %i[content_matches]
+  end
 end

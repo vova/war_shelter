@@ -17,6 +17,9 @@ ActiveAdmin.register Place do
     end
   end
 
+  filter :content_matches,
+         label: 'Global search by content',
+         as: :string
   filter :coordinator_id,
          label: 'Coordinator', as: :select,
          collection: lambda {
@@ -96,7 +99,7 @@ ActiveAdmin.register Place do
       place.coordinator.email
     end
     column :assigned_to do |place|
-      place.user.name
+      place.user&.name
     end
 
     actions
@@ -176,7 +179,7 @@ ActiveAdmin.register Place do
         place.accommodation_type.name
       end
       row :assigned_to do |plase|
-        place.user.name
+        place.user&.name
       end
     end
 
