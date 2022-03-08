@@ -62,4 +62,21 @@ class Place < ApplicationRecord
   def self.ransackable_scopes(_auth_object = nil)
     %i[content_matches]
   end
+
+  def to_copy_format
+    {
+      type: accommodation_type.name,
+      rooms: rooms_available ,
+      beds: beds ,
+      kids_beds: kids_beds.to_i > 0 ? kids_beds : nil,
+      pets: is_pets_allowed ? 'allowed' : nil,
+      price_per_day: price_per_day,
+      price_per_month: price_per_month,
+      currency: currency,
+      address: address,
+      phone: phone,
+      phone2: phone2,
+      contact_name: contact_name
+    }.map{|k,v| "#{k}: #{v}" if v.present? }.compact.join(' | ')
+  end
 end
