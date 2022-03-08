@@ -79,7 +79,7 @@ ActiveAdmin.register User do
       user.user_status.status
     end
     column :coordinator_id do |user|
-      user.coordinator.email
+      "#{user.coordinator.name}" "\n" "#{user.coordinator.email}"
     end
     column :accommodation_pref do |user|
       user.accommodation_type.name
