@@ -5,7 +5,6 @@
 require 'rails_helper'
 
 RSpec.describe UserStatus, type: :model do
-  USER_STATUSES = %i[urgent_to_call accommodated in_office in_trip at_home no_response declined].freeze
   describe 'attributes' do
     it { is_expected.to have_db_column(:status).of_type(:string) }
   end
@@ -14,7 +13,7 @@ RSpec.describe UserStatus, type: :model do
     subject(:create_user_status) { described_class.new(status: status) }
 
     context 'when status field is valid' do
-      USER_STATUSES.each do |status|
+      UserStatus.statuses.each_value do |status|
         let(:status) { status }
 
         it "creates a valid UserStatus with #{status} value" do
@@ -32,7 +31,7 @@ RSpec.describe UserStatus, type: :model do
     end
 
     context 'when UserStatus have already exist' do
-      let(:status) { USER_STATUSES.first }
+      let(:status) { UserStatus.statuses.values.first }
 
       before { UserStatus.create(status: status) }
 
