@@ -39,6 +39,7 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_material (1.5.2)
     activeadmin (2.10.1)
       arbre (~> 1.2, >= 1.2.1)
       formtastic (>= 3.1, < 5.0)
@@ -48,6 +49,13 @@ GEM
       kaminari (~> 1.0, >= 1.2.1)
       railties (>= 6.0, < 6.2)
       ransack (~> 2.1, >= 2.1.1)
+    activeadmin_addons (1.8.3)
+      active_material
+      railties
+      require_all
+      sassc
+      sassc-rails
+      xdan-datetimepicker-rails (~> 2.5.1)
     activejob (6.1.4.6)
       activesupport (= 6.1.4.6)
       globalid (>= 0.3.6)
@@ -218,6 +226,7 @@ GEM
     redcarpet (3.5.1)
     request_store (1.5.1)
       rack (>= 1.4)
+    require_all (3.0.0)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -291,6 +300,9 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    xdan-datetimepicker-rails (2.5.4)
+      jquery-rails
+      rails (>= 3.2.16)
     yard (0.9.27)
       webrick (~> 1.7.0)
     zeitwerk (2.5.4)
@@ -300,6 +312,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin (~> 2.10.1)
+  activeadmin_addons (~> 1.8.3)
   bootsnap (>= 1.4.4)
   bundler-audit
   devise (~> 4.8.1)

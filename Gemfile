@@ -19,6 +19,7 @@ gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 gem 'kaminari', '~> 1.2.2'
 gem 'pg_search', '~> 2.3.6'
+gem 'activeadmin_addons', '~> 1.8.3'
 
 group :development, :test do
   gem 'bundler-audit', require: false
