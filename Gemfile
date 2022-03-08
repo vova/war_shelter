@@ -21,6 +21,8 @@ gem 'kaminari', '~> 1.2.2'
 gem 'pg_search', '~> 2.3.6'
 
 group :development, :test do
+  gem 'bundler-audit', require: false
+  gem 'ruby_audit', require: false
   gem 'factory_bot_rails', '~> 6.2'
   gem 'ffaker', '~> 2.20'
   gem 'pry', '~> 0.13'
