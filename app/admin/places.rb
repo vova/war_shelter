@@ -17,6 +17,9 @@ ActiveAdmin.register Place do
     end
   end
 
+  filter :content_matches,
+         label: 'Global search by content',
+         as: :string
   filter :coordinator_id,
          label: 'Coordinator', as: :select,
          collection: lambda {
@@ -74,7 +77,7 @@ ActiveAdmin.register Place do
     column :price_per_day
     column :price_per_month
     column :currency do |place|
-      place.currency.upcase
+      place.currency&.upcase
     end
     column :address
     column :distance_from_center
@@ -96,10 +99,16 @@ ActiveAdmin.register Place do
       place.coordinator.email
     end
     column :assigned_to do |place|
-      place.user.name
+      place.user&.name
     end
 
-    actions
+    actions do |place|
+      button_tag "Copy",
+                 :type => "button",
+                 :class => "copy_button",
+                 :id => "clipboard-btn",
+                 :data => {:clipboard_text => place.to_copy_format}
+    end
   end
 
   form do |f|
@@ -154,7 +163,7 @@ ActiveAdmin.register Place do
       row :price_per_day
       row :price_per_month
       row :currency do |place|
-        place.currency.upcase
+        place.currency&.upcase
       end
       row :address
       row :distance_from_center
@@ -175,8 +184,8 @@ ActiveAdmin.register Place do
       row :accommodation_type_id do |place|
         place.accommodation_type.name
       end
-      row :assigned_to do |plase|
-        place.user.name
+      row :assigned_to do |place|
+        place.user&.name
       end
     end
 
