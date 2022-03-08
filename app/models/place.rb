@@ -66,8 +66,8 @@ class Place < ApplicationRecord
   def to_copy_format
     {
       type: accommodation_type.name,
-      rooms: rooms_available ,
-      beds: beds ,
+      rooms: rooms_available,
+      beds: beds,
       kids_beds: kids_beds.to_i > 0 ? kids_beds : nil,
       pets: is_pets_allowed ? 'allowed' : nil,
       price_per_day: price_per_day,
