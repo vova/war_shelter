@@ -36,7 +36,7 @@ ActiveAdmin.register User do
   filter :coordinator_id,
          label: 'Coordinator', as: :select,
          collection: lambda {
-           AdminUser.all.pluck(:email, :id)
+           AdminUser.all.pluck(:name, :id)
          }
   filter :accommodation_pref,
          label: 'Accommodation', as: :select,
@@ -79,7 +79,7 @@ ActiveAdmin.register User do
       user.user_status.status
     end
     column :coordinator_id do |user|
-      user.coordinator.email
+      "#{user.coordinator.name}" "\n" "#{user.coordinator.email}"
     end
     column :accommodation_pref do |user|
       user.accommodation_type.name
@@ -112,12 +112,18 @@ ActiveAdmin.register User do
       f.input :vaccination
       f.input :comment
       f.input :status_id, as: :select, collection: UserStatus.all.pluck(:status, :id)
-      f.input :coordinator_id, as: :select, collection: AdminUser.all.pluck(:email, :id)
-      f.input :accommodation_pref, as: :select, collection: AccommodationType.all.pluck(:name, :id)
+      f.input :coordinator_id, as: :select, collection: AdminUser.all.pluck(:name, :id)
+      f.input(
+        :accommodation_pref,
+        as: :select,
+        collection: AccommodationType.all.pluck(:name, :id),
+        include_blank: false
+      )
       f.input(
         :transport_id,
         as: :select,
-        collection: Transport.to_select_collection
+        collection: Transport.to_select_collection,
+        include_blank: false
       )
       f.input(
         :date_arrival,
