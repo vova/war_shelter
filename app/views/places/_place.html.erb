@@ -1,0 +1,37 @@
+<tr class="odd">
+  <td class="col col-name"><%= place.name %></td>
+  <td class="col col-city"><%= place.city %></td>
+  <td class="col col-region"><%= place.region %></td>
+  <td class="col col-rooms_available"><%= place.rooms_available %></td>
+  <td class="col col-beds"><%= place.beds %></td>
+  <td class="col col-kids_beds"><%= place.kids_beds %></td>
+  <td class="col col-is_pets_allowed">
+    <span class="status_tag"><%= place.is_pets_allowed %></span>
+  </td>
+  <td class="col col-capacity"><%= place.capacity %></td>
+  <td class="col col-additional_child_place"><%= place.additional_child_place %></td>
+  <td class="col col-status"><%= place.status %></td>
+  <td class="col col-price_per_day"><%= place.price_per_day %></td>
+  <td class="col col-price_per_month"><%= place.price_per_month %></td>
+  <td class="col col-currency"><%= place.currency&.upcase %></td>
+  <td class="col col-address"><%= place.address %></td>
+  <td class="col col-distance_from_center"><%= place.distance_from_center %></td>
+  <td class="col col-available_since"><%= place.available_since %></td>
+  <td class="col col-available_till"><%= place.available_till %></td>
+  <td class="col col-phone"><%= place.phone %></td>
+  <td class="col col-phone2"><%= place.phone2 %></td>
+  <td class="col col-is_realtor">
+    <span class="status_tag"><%= place.is_realtor %></span>
+  </td>
+  <td class="col col-contact_name"><%= place.contact_name %></td>
+  <td class="col col-geo"><%= place.geo %></td>
+  <td class="col col-website"><%= place.website %></td>
+  <td class="col col-comment"><%= place.comment %></td>
+  <td class="col col-floor"><%= place.floor %></td>
+  <td class="col col-is_newbuilding">
+    <span class="status_tag"><%= place.is_newbuilding %></span>
+  </td>
+  <td class="col col-accommodation_type_id"><%= place.accommodation_type.name %></td>
+  <td class="col col-coordinator_id"><%= place.coordinator.name %></td>
+  <td class="col col-assigned_to"><%= place.user&.name %></td>
+</tr>
