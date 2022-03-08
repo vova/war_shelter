@@ -5,3 +5,5 @@ import "./stylesheets/active_admin";
 import "@activeadmin/activeadmin";
 
 import "./clipboard"
+
+import "activeadmin_addons"

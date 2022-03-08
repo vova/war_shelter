@@ -1,11 +1,22 @@
 class UserStatus < ApplicationRecord
-  enum status: {
-    urgent_to_call: "Urgent to call",
-    accommodated: "Accommodated",
-    in_office: "In office",
-    in_trip: "In trip",
-    at_home: "At home",
-    no_response: "No response",
-    declined: "Declined"
+  URGENT_TO_CALL = "Urgent to call"
+  ACCOMMODATED = "Accommodated"
+  IN_OFFICE = "In office"
+  IN_TRIP = "In trip"
+  AT_HOME = "At home"
+  NO_RESPONSE = "No response"
+  DECLINED = "Declined"
+
+
+  STATUSES = {
+    'Urgent to call' => URGENT_TO_CALL,
+    "Accommodated" => ACCOMMODATED,
+    "In office" => IN_OFFICE,
+    "In trip" => IN_TRIP,
+    "At home" => AT_HOME,
+    "No response" => NO_RESPONSE,
+    "Declined" => DECLINED
   }
+
+  enum status: STATUSES
 end
