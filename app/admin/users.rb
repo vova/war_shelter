@@ -117,13 +117,13 @@ ActiveAdmin.register User do
         :accommodation_pref,
         as: :select,
         collection: AccommodationType.all.pluck(:name, :id),
-        selected: AccommodationType.all.pluck(:name, :id).first
+        include_blank: false
       )
       f.input(
         :transport_id,
         as: :select,
         collection: Transport.to_select_collection,
-        selected: Transport.to_select_collection.second
+        include_blank: false
       )
       f.input(
         :date_arrival,
