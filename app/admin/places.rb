@@ -139,29 +139,17 @@ ActiveAdmin.register Place do
       f.input :name
       f.input :city
       f.input :region
-      f.input :rooms_available
-      f.input :beds
-      f.input :kids_beds
-      f.input :is_pets_allowed
-      f.input :capacity
-      f.input :additional_child_place
-      f.input :status
-      f.input :price_per_day
-      f.input :price_per_month
-      f.input :currency, as: :select, collection: Place.currencies.values,  include_blank: false
       f.input :address
-      f.input :distance_from_center
-      f.input :available_since, as: :datepicker, datepicker_options: { min_date: '2022-01-01' }
-      f.input :available_till, as: :datepicker, datepicker_options: { min_date: '2022-01-01' }
+      f.input :status
+      f.input :is_realtor
+      f.input :is_pets_allowed
+      f.input :is_newbuilding
+      f.input :contact_name
       f.input :phone
       f.input :phone2
-      f.input :is_realtor
-      f.input :contact_name
-      f.input :geo
-      f.input :website
-      f.input :comment
+      f.input :available_since, as: :datepicker, datepicker_options: { min_date: '2022-01-01' }
+      f.input :available_till, as: :datepicker, datepicker_options: { min_date: '2022-01-01' }
       f.input :floor
-      f.input :is_newbuilding
       f.input :coordinator_id, as: :select, collection: AdminUser.all.pluck(:name, :id)
       f.input(
         :accommodation_type_id,
@@ -169,7 +157,19 @@ ActiveAdmin.register Place do
         collection: AccommodationType.all.pluck(:name, :id),
         include_blank: false
       )
+      f.input :rooms_available, min: 0
+      f.input :beds, min: 0
+      f.input :kids_beds, min: 0
+      f.input :capacity
+      f.input :additional_child_place
+      f.input :price_per_day, min: 0
+      f.input :price_per_month, min: 0
+      f.input :currency, as: :select, collection: Place.currencies.values,  include_blank: false
       f.input :assigned_to, as: :select, collection: User.all.pluck(:name, :id)
+      f.input :distance_from_center, min: 0
+      f.input :geo
+      f.input :website
+      f.input :comment
     end
 
     f.actions

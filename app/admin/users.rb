@@ -108,17 +108,6 @@ ActiveAdmin.register User do
       f.input :email
       f.input :password
       f.input :password_confirmation
-      f.input :from
-      f.input :destination
-      f.input :adults
-      f.input :kids
-      f.input :kids_comment
-      f.input :pets
-      f.input :phone
-      f.input :phone2
-      f.input :geo
-      f.input :vaccination
-      f.input :comment
       f.input :status_id, as: :select, collection: UserStatus.all.pluck(:status, :id)
       f.input :coordinator_id, as: :select, collection: AdminUser.all.pluck(:name, :id)
       f.input(
@@ -138,6 +127,17 @@ ActiveAdmin.register User do
         as: :datepicker,
         datepicker_options: { min_date: '2022-01-01' }
       )
+      f.input :phone
+      f.input :phone2
+      f.input :from
+      f.input :destination
+      f.input :adults, min: 0
+      f.input :kids, min: 0
+      f.input :kids_comment
+      f.input :pets
+      f.input :vaccination
+      f.input :geo
+      f.input :comment
     end
 
     f.actions
