@@ -59,6 +59,32 @@ class Place < ApplicationRecord
 
   scope :content_matches, ->(term) { super_search(term) }
 
+  scope :available_places_for, lambda { |user|
+    users_table = user.class.arel_table
+
+    available.where(
+      arel_table[:city].matches(
+        "%#{user.destination}%"
+      ).and(
+        arel_table[:is_pets_allowed].eq(
+          user.pets
+        )
+      ).and(
+        arel_table[:capacity].gteq(
+          (user.adults || 0) + (user.kids || 0)
+        ).or(
+          Arel::Nodes::SqlLiteral.new(
+            '"places"."beds" * 2'
+          ).gteq(user.adults || 0).and(
+            arel_table[:kids_beds].gteq(
+              user.kids || 0
+            )
+          )
+        )
+      )
+    )
+  }
+
   def self.ransackable_scopes(_auth_object = nil)
     %i[content_matches]
   end
