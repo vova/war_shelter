@@ -17,6 +17,28 @@ ActiveAdmin.register Place do
     end
   end
 
+  scope('Shelter') { |scope| scope.where(accommodation_type_id: 1) }
+  scope('Hostel') { |scope| scope.where(accommodation_type_id: 2) }
+  scope('Hotel') { |scope| scope.where(accommodation_type_id: 3) }
+  scope('Private house') { |scope| scope.where(accommodation_type_id: 4) }
+  scope('Friendly apartment') { |scope| scope.where(accommodation_type_id: 5) }
+  scope('Rent apartment') { |scope| scope.where(accommodation_type_id: 6) }
+  scope('Room with neighbours') { |scope| scope.where(accommodation_type_id: 7) }
+
+  # scope defines all records with specific field, case sencitive false
+  scope('LVIV') { |scope| scope.where(Place.arel_table[:city].matches('Lviv')) }
+  scope('TERNOPIL') { |scope| scope.where(Place.arel_table[:city].matches('Ternopil')) }
+  scope('CHERNIVTSI') { |scope| scope.where(Place.arel_table[:city].matches('Chernivtsi')) }
+  scope('IVANO-FRANKIVSK') { |scope| scope.where(Place.arel_table[:city].matches('Ivano-Frankivsk')) }
+  scope('UZHOROD') { |scope| scope.where(Place.arel_table[:city].matches('Uzhgorod')) }
+  scope('OTHERS') do |scope|
+    scope.where.not(Place.arel_table[:city].matches('Ternopil')).
+      where.not(Place.arel_table[:city].matches('Lviv')).
+      where.not(Place.arel_table[:city].matches('Chernivtsi')).
+      where.not(Place.arel_table[:city].matches('Ivano-Frankivsk')).
+      where.not(Place.arel_table[:city].matches('Uzhorod'))
+  end
+
   filter :content_matches,
          label: 'Global search by content',
          as: :string
