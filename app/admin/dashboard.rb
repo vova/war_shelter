@@ -31,8 +31,8 @@ ActiveAdmin.register_page "Dashboard" do
             t.column('Accommodation type') { |place| place.accommodation_type }
             t.column('Capacity') { |place| place.capacity }
             t.column('Available since') { |place| place.available_since }
-            t.column('Price per day') { |place| "#{place.price_per_day} #{place.currency}" }
-            t.column('Price per month') { |place| "#{place.price_per_month} #{place.currency}" }
+            t.column('Price per day') { |place| "#{place.price_per_day} #{place.currency.upcase}" }
+            t.column('Price per month') { |place| "#{place.price_per_month} #{place.currency.upcase}" }
           end
         end
       end
