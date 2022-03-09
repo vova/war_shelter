@@ -43,9 +43,8 @@ RSpec.describe Place, type: :model do
   end
 
   describe 'relations' do
-    it { is_expected.to belong_to(:user).inverse_of(:places) }
-    it { is_expected.to belong_to(:user).touch(true) }
-    it { is_expected.to belong_to(:user).class_name('User').with_foreign_key('assigned_to') }
+    it { is_expected.to belong_to(:user).inverse_of(:places).optional(true) }
+    it { is_expected.to belong_to(:user).class_name('User').with_foreign_key('assigned_to').touch(true).optional(true) }
     it { is_expected.to belong_to(:coordinator).class_name('AdminUser').with_foreign_key('coordinator_id') }
     it { is_expected.to belong_to(:accommodation_type).class_name('AccommodationType').with_foreign_key('accommodation_type_id') }
   end

@@ -3,7 +3,7 @@ class Place < ApplicationRecord
   include PgSearch::Model
 
   belongs_to :user, inverse_of: :places, touch: true,
-             foreign_key: 'assigned_to', class_name: 'User'
+             foreign_key: 'assigned_to', class_name: 'User', optional: true
   belongs_to :coordinator,
              foreign_key: 'coordinator_id', class_name: 'AdminUser'
   belongs_to :accommodation_type,
