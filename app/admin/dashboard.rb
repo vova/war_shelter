@@ -11,7 +11,7 @@ ActiveAdmin.register_page "Dashboard" do
               t.column('name') { |user| link_to(user.name, admin_user_path(user)) }
               t.column('email') { |user| user.email }
               t.column('status') { |user| user.user_status.status }
-              t.column('people') { |user| "#{user.adults + user.kids}total, #{user.kids} kid(s)" }
+              t.column('people') { |user| "#{user.adults + user.kids} total, #{user.kids} kid(s)" }
               t.column('pets') { |user| user.pets }
               t.column('Phone numbers') { |user| user.phone + user.phone2 }
             end

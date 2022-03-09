@@ -1,4 +1,4 @@
-@import 'activeadmin_addons/src/stylesheets/all';
+@import "activeadmin_addons/src/stylesheets/all";
 // Sass variable overrides must be declared before loading up Active Admin's styles.
 //
 // To view the variables that Active Admin provides, take a look at
@@ -20,4 +20,27 @@
 .copy_button {
   margin: auto;
   display: flex;
+}
+
+.inputs {
+  label {
+    display: block;
+  }
+
+  input {
+    max-width: 25%;
+  }
+
+  span.select2-container {
+    max-width: 25%;
+  }
+
+  li.boolean.input {
+    display: inline;
+  }
+
+  textarea {
+    height: 50px;
+    width: 25%;
+  }
 }
