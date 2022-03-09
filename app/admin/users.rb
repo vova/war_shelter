@@ -28,6 +28,14 @@ ActiveAdmin.register User do
     end
   end
 
+  scope('Urgent to call') { |scope| scope.where(status_id: 1) }
+  scope('Accommodated') { |scope| scope.where(status_id: 2) }
+  scope('In office') { |scope| scope.where(status_id: 3) }
+  scope('In trip') { |scope| scope.where(status_id: 4) }
+  scope('At home') { |scope| scope.where(status_id: 5) }
+  scope('No response') { |scope| scope.where(status_id: 6) }
+  scope('Declined') { |scope| scope.where(status_id: 7) }
+
   filter :status_id,
          label: 'Status', as: :select,
          collection: lambda {

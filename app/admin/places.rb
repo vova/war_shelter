@@ -23,7 +23,7 @@ ActiveAdmin.register Place do
   filter :coordinator_id,
          label: 'Coordinator', as: :select,
          collection: lambda {
-           AdminUser.all.pluck(:email, :id)
+           AdminUser.all.pluck(:name, :id)
          }
   filter :accommodation_type_id,
          label: 'Accommodation', as: :select,
@@ -96,7 +96,7 @@ ActiveAdmin.register Place do
       place.accommodation_type.name
     end
     column :coordinator_id do |place|
-      place.coordinator.email
+     "#{place.coordinator.name}\n#{place.coordinator.email}"
     end
     column :assigned_to do |place|
       place.user&.name
@@ -126,7 +126,7 @@ ActiveAdmin.register Place do
       f.input :status
       f.input :price_per_day
       f.input :price_per_month
-      f.input :currency, as: :select, collection: Place.currencies
+      f.input :currency, as: :select, collection: Place.currencies.values,  include_blank: false
       f.input :address
       f.input :distance_from_center
       f.input :available_since, as: :datepicker, datepicker_options: { min_date: '2022-01-01' }
@@ -140,8 +140,13 @@ ActiveAdmin.register Place do
       f.input :comment
       f.input :floor
       f.input :is_newbuilding
-      f.input :coordinator_id, as: :select, collection: AdminUser.all.pluck(:email, :id)
-      f.input :accommodation_type_id, as: :select, collection: AccommodationType.all.pluck(:name, :id)
+      f.input :coordinator_id, as: :select, collection: AdminUser.all.pluck(:name, :id)
+      f.input(
+        :accommodation_type_id,
+        as: :select,
+        collection: AccommodationType.all.pluck(:name, :id),
+        include_blank: false
+      )
       f.input :assigned_to, as: :select, collection: User.all.pluck(:name, :id)
     end
 
@@ -179,7 +184,7 @@ ActiveAdmin.register Place do
       row :floor
       row :is_newbuilding
       row :coordinator_id do |place|
-        place.coordinator.email
+        place.coordinator.name
       end
       row :accommodation_type_id do |place|
         place.accommodation_type.name
