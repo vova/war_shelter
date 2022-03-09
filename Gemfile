@@ -40,4 +40,9 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'spring'
   gem 'web-console', '>= 4.1.0'
+  gem 'capistrano', '3.16.0', require: false
+  gem 'capistrano-rails', '1.6.2', require: false
+  gem 'capistrano-rbenv', '2.2.0', require: false
+  gem 'capistrano-passenger', '0.2.1', require: false
+  gem 'capistrano-bundler', '~> 2.0.1', require: false
 end
