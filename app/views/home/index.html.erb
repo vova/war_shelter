@@ -1,46 +1,48 @@
 <% if @available_places.any? %>
-  <h4>Available places</h4>
+<div class="container-fluid">
+  <h1>Available places</h1>
   <div style="width: 100%; overflow-y: auto;">
-  <table id="index_table_places" class="table table-striped" style="width:100%">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>City</th>
-        <th>Region</th>
-        <th>Rooms Available</th>
-        <th>Beds</th>
-        <th>Kids Beds</th>
-        <th>Is Pets Allowed</th>
-        <th>Capacity</th>
-        <th>Additional Child Place</th>
-        <th>Status</th>
-        <th>Price Per Day</th>
-        <th>Price Per Month</th>
-        <th>Currency</th>
-        <th>Address</th>
-        <th>Distance From Center</th>
-        <th>Available Since</th>
-        <th>Available Till</th>
-        <th>Phone</th>
-        <th>Phone2</th>
-        <th>Is Realtor</th>
-        <th>Contact Name</th>
-        <th>Geo</th>
-        <th>Website</th>
-        <th>Comment</th>
-        <th>Floor</th>
-        <th>Is Newbuilding</th>
-        <th>Accommodation Type</th>
-        <th>Coordinator</th>
-        <th>Assigned To</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render @available_places %>
-      <%= render @available_places %>
-    </tbody>
-  </table>
+    <table id="index_table_places" class="table table-striped" style="width:100%"">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>City</th>
+          <th>Region</th>
+          <th>Rooms Available</th>
+          <th>Beds</th>
+          <th>Kids Beds</th>
+          <th>Is Pets Allowed</th>
+          <th>Capacity</th>
+          <th>Additional Child Place</th>
+          <th>Status</th>
+          <th>Price Per Day</th>
+          <th>Price Per Month</th>
+          <th>Currency</th>
+          <th>Address</th>
+          <th>Distance From Center</th>
+          <th>Available Since</th>
+          <th>Available Till</th>
+          <th>Phone</th>
+          <th>Phone2</th>
+          <th>Is Realtor</th>
+          <th>Contact Name</th>
+          <th>Geo</th>
+          <th>Website</th>
+          <th>Comment</th>
+          <th>Floor</th>
+          <th>Is Newbuilding</th>
+          <th>Accommodation Type</th>
+          <th>Coordinator</th>
+          <th>Assigned To</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @available_places %>
+      </tbody>
+    </table>
   </div>
+</div>
 <% else %>
   <h4>No relevant places found</h4>
 <% end %>
