@@ -9,9 +9,9 @@ $dark-gray: #666;
 $medium-gray: #6c757d;
 $light-gray: #c2c2c2;
 $blue: #7dc3f8;
-$light-blue: lighten($blue, 40%);
+$dark-blue: darken($blue, 40%);
 $yellow: #fffb00;
-$light-yellow: #ffc;
+$light-yellow: rgb(246, 246, 76);
 
 // Custom Variables
 
@@ -44,7 +44,7 @@ header {
     }
 
     a:hover {
-      color: $yellow;
+      color: $dark-blue;
     }
 
     .logout-btn {
@@ -54,7 +54,7 @@ header {
     }
 
     .logout-btn:hover {
-      color: $yellow;
+      color: $dark-blue;
     }
 
     img {
@@ -83,50 +83,61 @@ header {
         margin: 10px;
       }
 
-      &.edit::hover {
+      &.edit:hover {
         @extend .btn-primary;
       }
     }
   }
 }
-
-form:not([class="button_to"]) {
-  max-width: 500px;
-  margin-top: 1.5rem;
-
-  label {
-    font-size: 1.1rem;
-    font-weight: 600;
-    display: block;
-  }
-
-  input:not([type="checkbox"]),
-  textarea,
-  select:not(.datetime) {
-    @extend .form-control;
-    margin-bottom: 0.75rem;
-    width: 100%;
-  }
-
-  select.datetime {
-    display: inline-block;
-    margin-bottom: 0.75rem;
-  }
-
-  input[type="submit"] {
-    @extend .btn, .btn-primary, .btn-block;
+.user {
+  form:not([class="button_to"]) {
+    max-width: 500px;
     margin-top: 1.5rem;
-  }
 
-  input[type="checkbox"] {
-    @extend .form-check-input;
-    width: 20px;
-    height: 20px;
-  }
+    label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: block;
+    }
 
-  input[type="checkbox"] + label {
-    @extend .form-check-label;
-    padding-left: 0.5rem;
-    margin-bottom: 0.5rem;
+    input:not([type="checkbox"]),
+    textarea,
+    select:not(.datetime) {
+      @extend .form-control;
+      margin-bottom: 0.75rem;
+      width: 100%;
+    }
+
+    select.datetime {
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+
+    input[type="submit"] {
+      @extend .btn, .btn-primary;
+      margin-top: 1.5rem;
+    }
+
+    input[type="checkbox"] {
+      @extend .form-check-input;
+      width: 20px;
+      height: 20px;
+    }
+
+    input[type="checkbox"] + label {
+      @extend .form-check-label;
+      padding-left: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+footer {
+  background-color: $blue;
+  margin-top: 3rem;
+  padding: 5px;
+
+  .footer-heading > a {
+    color: $dark-blue;
   }
 }
