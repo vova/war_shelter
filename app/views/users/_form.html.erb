@@ -1,0 +1,65 @@
+<%= form_with(model: user, local: true) do |f| %>
+  <%#= render 'shared/errors', object: user %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, autofocus: true %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :from %>
+  <%= f.text_field :from %>
+
+  <%= f.label :destination %>
+  <%= f.text_field :destination %>
+
+  <%= f.label :phone %>
+  <%= f.phone_field :phone %>
+
+  <%= f.label :phone2, "Another phone" %>
+  <%= f.phone_field :phone2 %>
+
+  <%= f.label :status %>
+  <%= f.select :status_id, options_for_select(UserStatus.all.pluck(:status, :id)) %>
+  
+  <%= f.label :coordinator %>
+  <%= f.select :coordinator_id, options_for_select(AdminUser.all.pluck(:name, :id)) %>
+
+  <%= f.label :accommodation_pref, 'Accomodation preferences' %>
+  <%= f.select :accommodation_pref, options_for_select(AccommodationType.all.pluck(:name, :id)) %>
+
+  <%= f.label :transport %>
+  <%= f.select :transport_id, options_for_select(Transport.to_select_collection) %>
+
+  <%= f.label :date_arrival %>
+  <%= f.datetime_field :date_arrival %>
+
+  <%= f.label :adults %>
+  <%= f.number_field :adults, min: 0 %>
+
+  <%= f.label :kids %>
+  <%= f.number_field :kids, min: 0 %>
+
+  <%= f.label :kids_comment %>
+  <%= f.text_field :kids_comment %>
+
+  <%= f.label :pets %>
+  <%= f.check_box :pets, checked: false %>
+
+  <%= f.label :vaccination %>
+  <%= f.check_box :vaccination, checked: false %>
+
+  <%= f.label :geo %>
+  <%= f.text_field :geo %>
+
+  <%= f.label :comment %>
+  <%= f.text_area :comment, rows: 2 %>
+
+  <%#= f.label :password %>
+  <%#= f.password_field :password %>
+
+  <%#= f.label :password_confirmation, "Confirm Password" %>
+  <%#= f.password_field :password_confirmation %>
+
+  <%= f.submit "Update Account"%>
+<% end %>
