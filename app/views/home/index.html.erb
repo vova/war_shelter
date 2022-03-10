@@ -1,6 +1,7 @@
 <% if @available_places.any? %>
   <h4>Available places</h4>
-  <table cellspacing="0" cellpadding="0" id="index_table_places" class="index_table index">
+  <div style="width: 100%; overflow-y: auto;">
+  <table id="index_table_places" class="table table-striped" style="width:100%">
     <thead>
       <tr>
         <th>Name</th>
@@ -36,8 +37,10 @@
     </thead>
     <tbody>
       <%= render @available_places %>
+      <%= render @available_places %>
     </tbody>
   </table>
+  </div>
 <% else %>
   <h4>No relevant places found</h4>
 <% end %>
