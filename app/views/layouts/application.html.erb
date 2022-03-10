@@ -10,22 +10,26 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="/">Our Logo</a>
-      <% if current_user %>
-        <form class="form-inline">
-          <%= link_to current_user.name, user_path(current_user) %>
-          <%= button_to "logout", destroy_user_session_path, method: :delete, class: 'btn btn-outline-primary' %>
-        </form>
-      <% end %>
-    </nav>
+    <header>
+      <nav id="nav">
+      <%= link_to image_tag('logo.png'), root_path %>
+        <% if current_user %>
+          <form class="form-inline">
+            <%= link_to current_user.name, user_path(current_user) %>
+            <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "logout-btn" %>
+          </form>
+        <% end %>
+      </nav>
+    </header>
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>
     <% end %>
     <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
     <footer class="footer-07">
       <div class="container">
         <div class="row justify-content-center">

@@ -1,6 +1,4 @@
 <%= form_with(model: user, local: true) do |f| %>
-  <%#= render 'shared/errors', object: user %>
-
   <%= f.label :name %>
   <%= f.text_field :name, autofocus: true %>
 
@@ -32,7 +30,7 @@
   <%= f.select :transport_id, options_for_select(Transport.to_select_collection) %>
 
   <%= f.label :date_arrival %>
-  <%= f.datetime_field :date_arrival %>
+  <%= f.datetime_select :date_arrival, class: 'datetime' %>
 
   <%= f.label :adults %>
   <%= f.number_field :adults, min: 0 %>

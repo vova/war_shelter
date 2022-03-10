@@ -1,18 +1,19 @@
-<p>Name: <%= current_user.name %></p>
-<p>Email: <%= current_user.email %></p>
-<p>Status: <%= current_user.user_status&.status %></p>
-<p>Coordinator: <%= current_user.coordinator&.name %></p>
-<p><%= current_user.name %></p> <%# add link to coordinator show page %>
-<p>From: <%= current_user.from %></p>
-<p>Destination: <%= current_user.destination %></p>
-<p>Adults: <%= current_user.adults %></p>
-<p>Kids: <%= current_user.kids %></p>
-<p>Pets: <%= current_user.pets %></p>
-<p>Phone: <%= current_user.phone %></p>
-<p>Another phone: <%= current_user.phone2 %></p>
-<p>Geo: <%= current_user.geo %></p>
-<p>Accommodation preferences: <%= current_user.accommodation_pref %></p>
-<p>Date arrival: <%= current_user.date_arrival %></p>
-<p>Request id: <%= current_user.request_id %></p>
-<p>Vaccination: <%= current_user.vaccination %></p>
-<p>Comment: <%= current_user.comment %></p>
+<ul>
+  <li>Name: <%= current_user.name %></li>
+  <li>Email: <%= current_user.email %></li>
+  <li>Status: <%= current_user.user_status&.status %></li>
+  <li>Coordinator: <%= current_user.coordinator&.name %></li>
+  <li>Phone: <%= current_user.phone %></li>
+  <li>Another phone: <%= current_user.phone2 %></li>
+  <li>From: <%= current_user.from %></li>
+  <li>Destination: <%= current_user.destination %></li>
+  <li>Adults: <%= current_user.adults %></li>
+  <li>Kids: <%= current_user.kids %></li>
+  <li>Pets: <%= current_user.pets %></li>
+  <li>Vaccination: <%= current_user.vaccination %></li>
+  <li>Geo: <%= current_user.geo %></li>
+  <li>Accommodation preferences: <%= current_user.accommodation_pref %></li>
+  <li>Date arrival: <%= current_user.date_arrival %></li>
+  <li>Request id: <%= current_user.request_id %></li>
+  <li>Comment: <%= current_user.comment %></li>
+</ul>
