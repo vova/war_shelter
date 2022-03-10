@@ -8,7 +8,13 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import '../js/bootstrap_js_files.js'
+import dt from "datatables.net";
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+document.addEventListener("turbolinks:load", () => {
+    dt(window, $);
+    $('#index_table_places').DataTable();
+});

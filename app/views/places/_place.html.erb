@@ -1,4 +1,4 @@
-<tr class="odd">
+<tr>
   <td class="col col-name"><%= place.name %></td>
   <td class="col col-city"><%= place.city %></td>
   <td class="col col-region"><%= place.region %></td>
@@ -34,4 +34,7 @@
   <td class="col col-accommodation_type_id"><%= place.accommodation_type.name %></td>
   <td class="col col-coordinator_id"><%= place.coordinator.name %></td>
   <td class="col col-assigned_to"><%= place.user&.name %></td>
+  <td>
+    <%= link_to 'Show', place, class: "btn btn-light min-width-btn" %>
+  </td>
 </tr>
