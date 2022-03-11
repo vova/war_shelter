@@ -30,7 +30,7 @@
   <%= f.select :transport_id, options_for_select(Transport.to_select_collection) %>
 
   <%= f.label :date_arrival %>
-  <%= f.datetime_select :date_arrival, class: 'datetime' %>
+  <%= f.datetime_field :date_arrival %>
 
   <%= f.label :adults %>
   <%= f.number_field :adults, min: 0 %>
@@ -42,10 +42,10 @@
   <%= f.text_field :kids_comment %>
 
   <%= f.label :pets %>
-  <%= f.check_box :pets, checked: false %>
+  <%= f.check_box :pets %>
 
   <%= f.label :vaccination %>
-  <%= f.check_box :vaccination, checked: false %>
+  <%= f.check_box :vaccination %>
 
   <%= f.label :geo %>
   <%= f.text_field :geo %>

@@ -29,6 +29,10 @@ $secondary: $dark-gray;
   @extend .container;
 }
 
+input[type="search"] {
+  @extend .form-control;
+}
+
 // Header and Nav
 
 header {
@@ -102,10 +106,14 @@ header {
 
     input:not([type="checkbox"]),
     textarea,
-    select:not(.datetime) {
+    select {
       @extend .form-control;
       margin-bottom: 0.75rem;
       width: 100%;
+    }
+
+    select {
+      @extend .form-select;
     }
 
     select.datetime {
