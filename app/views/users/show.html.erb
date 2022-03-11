@@ -1,0 +1,7 @@
+<section class='user'>
+  <h2>Your account</h2>
+  <%= render 'user', user: current_user %>
+  <div class='actions'>
+    <%= link_to "Edit Account", edit_user_path(current_user), class: 'button edit'%>
+  </div>
+</section>
