@@ -5,32 +5,32 @@
 
 <h2>Place <%= @place.id %></h2>
 
-  <ul>
-    <li><u><b>Name:</b></u> ........................................ <%= @place.name %></li>
-    <li><u><b>Accommodation Type:</b></u> .......... <%= @place.accommodation_type.name %></li>
-    <li><u><b>City:</b></u> ............................................ <%= @place.city %></li>
-    <li><u><b>Region:</b></u> ....................................... <%= @place.region %></li>
-    <li><u><b>Rooms Available:</b></u> .................... <%= @place.rooms_available %></li>
-    <li><u><b>Bads:</b></u> ........................................... <%= @place.beds %></li>
-    <li><u><b>Kids Beds:</b></u> ................................. <%= @place.kids_beds %></li>
-    <li><u><b>Is Pets Allowed:</b></u> ...................... <%= @place.is_pets_allowed ? 'YES' : 'NO' %></li>
-    <li><u><b>Capacity:</b></u> ................................... <%= @place.capacity %></li>
-    <li><u><b>Additonal Kids Beds:</b></u> ............. <%= @place.additional_child_place %></li>
-    <li><u><b>Coordinator:</b></u> ............................ <%= @place.coordinator.name %></li>
-    <li><u><b>Status:</b></u> ....................................... <%= @place.status.humanize %></li>
-    <li><u><b>Price Per Day:</b></u> ..........................<% if @place.price_per_day %> <%= @place.price_per_day %> <%= @place.currency.upcase %> <% end %></li>
-    <li><u><b>Price Per Month:</b></u> ..................... <% if @place.price_per_month %> <%= @place.price_per_month %> <%= @place.currency.upcase %> <% end %></li>
-    <li><u><b>Address:</b></u> ..................................... <%= @place.address %></li>
-    <li><u><b>Distance From Center:</b></u> ........... <%= @place.distance_from_center %></li>
-    <li><u><b>Available Since:</b></u> ........................ <%= @place.available_since %></li>
-    <li><u><b>Available Till:</b></u> ............................ <%= @place.available_till %></li>
-    <li><u><b>Phones:</b></u> ........................................ <%= @place.phone %>  <%= @place.phone2 %></li>
-    <li><u><b>Is Realtor:</b></u> .................................... <%= @place.is_realtor ? 'YES' : 'NO' %></li>
-    <li><u><b>Contact Name:</b></u> ........................... <%= @place.contact_name %></li>
-    <li><u><b>Geo:</b></u> ............................................... <%= @place.geo %></li>
-    <li><u><b>Website:</b></u> ....................................... <%= @place.website %></li>
-    <li><u><b>Floor:</b></u> ............................................ <%= @place.floor %></li>
-    <li><u><b>Is Newbuilding:</b></u> .......................... <%= @place.is_newbuilding ? 'YES' : 'NO' %></li>
-    <li><u><b>Assigned To:</b></u> ............................... <%= @place.user.name %></li>
-    <li><u><b>Comment:</b></u> .................................... <%= @place.comment %></li>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><u><b>Name:</b></u> ........................................ <%= @place.name %></li>
+    <li class="list-group-item"><u><b>Accommodation Type:</b></u> .......... <%= @place.accommodation_type&.name %></li>
+    <li class="list-group-item"><u><b>City:</b></u> ............................................ <%= @place.city %></li>
+    <li class="list-group-item"><u><b>Region:</b></u> ....................................... <%= @place.region %></li>
+    <li class="list-group-item"><u><b>Rooms Available:</b></u> .................... <%= @place.rooms_available %></li>
+    <li class="list-group-item"><u><b>Bads:</b></u> ........................................... <%= @place.beds %></li>
+    <li class="list-group-item"><u><b>Kids Beds:</b></u> ................................. <%= @place.kids_beds %></li>
+    <li class="list-group-item"><u><b>Is Pets Allowed:</b></u> ...................... <%= @place.is_pets_allowed ? 'YES' : 'NO' %></li>
+    <li class="list-group-item"><u><b>Capacity:</b></u> ................................... <%= @place.capacity %></li>
+    <li class="list-group-item"><u><b>Additonal Kids Beds:</b></u> ............. <%= @place.additional_child_place %></li>
+    <li class="list-group-item"><u><b>Coordinator:</b></u> ............................ <%= @place.coordinator&.name %></li>
+    <li class="list-group-item"><u><b>Status:</b></u> ....................................... <%= @place.status.humanize %></li>
+    <li class="list-group-item"><u><b>Price Per Day:</b></u> ..........................<% if @place.price_per_day %> <%= @place.price_per_day %> <%= @place.currency.upcase %> <% end %></li>
+    <li class="list-group-item"><u><b>Price Per Month:</b></u> ..................... <% if @place.price_per_month %> <%= @place.price_per_month %> <%= @place.currency.upcase %> <% end %></li>
+    <li class="list-group-item"><u><b>Address:</b></u> ..................................... <%= @place.address %></li>
+    <li class="list-group-item"><u><b>Distance From Center:</b></u> ........... <%= @place.distance_from_center %></li>
+    <li class="list-group-item"><u><b>Available Since:</b></u> ........................ <%= @place.available_since %></li>
+    <li class="list-group-item"><u><b>Available Till:</b></u> ............................ <%= @place.available_till %></li>
+    <li class="list-group-item"><u><b>Phones:</b></u> ........................................ <%= @place.phone %>  <%= @place.phone2 %></li>
+    <li class="list-group-item"><u><b>Is Realtor:</b></u> .................................... <%= @place.is_realtor ? 'YES' : 'NO' %></li>
+    <li class="list-group-item"><u><b>Contact Name:</b></u> ........................... <%= @place.contact_name %></li>
+    <li class="list-group-item"><u><b>Geo:</b></u> ............................................... <%= @place.geo %></li>
+    <li class="list-group-item"><u><b>Website:</b></u> ....................................... <%= @place.website %></li>
+    <li class="list-group-item"><u><b>Floor:</b></u> ............................................ <%= @place.floor %></li>
+    <li class="list-group-item"><u><b>Is Newbuilding:</b></u> .......................... <%= @place.is_newbuilding ? 'YES' : 'NO' %></li>
+    <li class="list-group-item"><u><b>Assigned To:</b></u> ............................... <%= @place.user&.name %></li>
+    <li class="list-group-item"><u><b>Comment:</b></u> .................................... <%= @place.comment %></li>
   </ul>
