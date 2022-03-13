@@ -1,19 +1,19 @@
 <ul>
-  <li>Name: <%= current_user.name %></li>
-  <li>Email: <%= current_user.email %></li>
-  <li>Status: <%= current_user.user_status&.status %></li>
-  <li>Coordinator: <%= current_user.coordinator&.name %></li>
-  <li>Phone: <%= current_user.phone %></li>
-  <li>Another phone: <%= current_user.phone2 %></li>
-  <li>From: <%= current_user.from %></li>
-  <li>Destination: <%= current_user.destination %></li>
-  <li>Adults: <%= current_user.adults %></li>
-  <li>Kids: <%= current_user.kids %></li>
-  <li>Pets: <%= current_user.pets %></li>
-  <li>Vaccination: <%= current_user.vaccination %></li>
-  <li>Geo: <%= current_user.geo %></li>
-  <li>Accommodation preferences: <%= current_user.accommodation_pref %></li>
-  <li>Date arrival: <%= current_user.date_arrival %></li>
-  <li>Request id: <%= current_user.request_id %></li>
-  <li>Comment: <%= current_user.comment %></li>
+  <li><b>Name: </b><%= user.name %></li>
+  <li><b>Email: </b><%= user.email %></li>
+  <li><b>Status: </b><%= user.user_status&.status %></li>
+  <li><b>Coordinator: </b><%= user.coordinator&.name %></li>
+  <li><b>Phone: </b><%= user.phone %></li>
+  <li><b>Another phone: </b><%= user.phone2 %></li>
+  <li><b>From: </b><%= user.from %></li>
+  <li><b>Destination: </b><%= user.destination %></li>
+  <li><b>Adults: </b><%= user.adults %></li>
+  <li><b>Kids: </b><%= user.kids %></li>
+  <li><b>Pets: </b><span class='boolean'><%= user.pets_status %></span></li>
+  <li><b>Vaccination: </b><span class='boolean'><%= user.vaccination_status %></span></li>
+  <li><b>Geo: </b><%= user.geo %></li>
+  <li><b>Accommodation preferences: </b><%= user.accommodation_type.name %></li>
+  <li><b>Date arrival: </b><%= user.date_arrival.strftime("%B %d, %l:%M %P") %></li>
+  <li><b>Request id: </b><%= user.request_id %></li>
+  <li><b>Comment: </b><%= user.comment %></li>
 </ul>

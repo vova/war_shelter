@@ -30,7 +30,7 @@ $secondary: $dark-gray;
 }
 
 input[type="search"] {
-  @extend .form-control;
+  @extend .form-control, .form-control-sm;
 }
 
 // Header and Nav
@@ -74,6 +74,12 @@ header {
     li {
       @extend .list-group-item;
     }
+  }
+
+  .boolean {
+    background-color: $dark-blue;
+    color: white;
+    padding: 4px;
   }
 
   .actions {
@@ -121,9 +127,13 @@ header {
       margin-bottom: 0.75rem;
     }
 
-    input[type="submit"] {
-      @extend .btn, .btn-primary;
+    input[type="submit"].update {
       margin-top: 1.5rem;
+      @extend .btn, .btn-primary;
+    }
+
+    input[type="submit"].cancel {
+      @extend .btn, .btn-outline-primary;
     }
 
     input[type="checkbox"] {
