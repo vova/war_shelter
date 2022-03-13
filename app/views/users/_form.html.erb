@@ -59,5 +59,6 @@
   <%#= f.label :password_confirmation, "Confirm Password" %>
   <%#= f.password_field :password_confirmation %>
 
-  <%= f.submit "Update Account"%>
+  <%= f.submit "Update Account", class: "update" %>
+  <%= button_to "Cancel", user_path(current_user), method: :get, class: "cancel" %>
 <% end %>
