@@ -19,4 +19,14 @@ class User < ApplicationRecord
 
   has_many :places, dependent: :destroy, inverse_of: :user, autosave: true
   scope :to_pay_attention, lambda { |current_admin_user| where(coordinator_id: current_admin_user.id) }
+
+  def vaccination_status
+    return 'Yes' if vaccination
+    'No'
+  end
+
+  def pets_status
+    return 'Yes' if pets
+    'No'
+  end
 end
