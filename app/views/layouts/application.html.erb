@@ -12,7 +12,11 @@
   <body>
     <header>
       <nav id="nav">
-      <%= link_to image_tag('logo.png'), root_path %>
+        <form class="form-inline">
+          <%= link_to image_tag('logo.png'), root_path %>
+          <%= link_to 'Admin', admin_root_path, class: "btn btn-outline-dark" %>
+        </form>
+
         <% if current_user %>
           <form class="form-inline">
             <%= link_to current_user.name, user_path(current_user) %>

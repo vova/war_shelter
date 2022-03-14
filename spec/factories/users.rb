@@ -9,9 +9,9 @@ FactoryBot.define do
     from { FFaker::Address.city }
     destination { FFaker::Address.city }
     adults { 2 }
-    kids { nil }
+    kids { 2 }
     kids_comment { 'Kids comment' }
-    pets { false }
+    pets { true }
     phone do
       FFaker::PhoneNumberUA.international_mobile_phone_number.gsub(/[\s-]/, '')
     end
