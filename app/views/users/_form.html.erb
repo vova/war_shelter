@@ -53,7 +53,6 @@
   <%= f.label :comment %>
   <%= f.text_area :comment, rows: 2 %>
 
-  <div class="actions">
-    <%= f.submit "Update Account", class: "update" %>
+  <%= f.submit "Update Account", class: "update" %>
   <%= button_to "Cancel", user_path(current_user), method: :get, class: "cancel" %>
 <% end %>

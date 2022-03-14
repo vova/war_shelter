@@ -100,79 +100,64 @@ header {
     }
   }
 }
-.user {
-  form:not([class="button_to"]) {
-    max-width: 500px;
-    margin-top: 1.5rem;
 
-    label {
-      font-size: 1.1rem;
-      font-weight: 600;
-      display: block;
-    }
-
-    input:not([type="checkbox"]),
-    textarea,
-    select {
-      @extend .form-control;
-      margin-bottom: 0.75rem;
-      width: 100%;
-    }
-
-    select {
-      @extend .form-select;
-    }
-
-    select.datetime {
-      display: inline-block;
-      margin-bottom: 0.75rem;
-    }
-
-    input[type="submit"].update {
-      margin-top: 1.5rem;
-      @extend .btn, .btn-primary;
-    }
-
-    input[type="submit"].cancel {
-      @extend .btn, .btn-outline-primary;
-    }
-
-    input[type="checkbox"] {
-      @extend .form-check-input;
-      width: 20px;
-      height: 20px;
-    }
-
-    input[type="checkbox"] + label {
-      @extend .form-check-label;
-      padding-left: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-  }
-}
-
-form.edit_user {
+// Forms
+form:not([class="button_to"]) {
   max-width: 500px;
+  margin-top: 1.5rem;
 
   label {
+    font-size: 1.1rem;
     font-weight: 600;
+    display: block;
   }
 
-  input:not([type="submit"]) {
+  input:not([type="checkbox"]),
+  textarea,
+  select {
     @extend .form-control;
+    margin-bottom: 0.75rem;
+    width: 100%;
+  }
+
+  select {
+    @extend .form-select;
+  }
+
+  select.datetime {
+    display: inline-block;
     margin-bottom: 0.75rem;
   }
 
-  input[type="submit"].update {
+  input[type="submit"] {
+    margin-top: 1.5rem;
     @extend .btn, .btn-primary;
-    margin: 15px 0px 15px 0px;
-    width: 100%;
+  }
+
+  input[type="submit"].cancel {
+    @extend .btn, .btn-outline-primary;
+  }
+
+  input[type="checkbox"] {
+    @extend .form-check-input;
+    width: 20px;
+    height: 20px;
+  }
+
+  input[type="checkbox"] + label {
+    @extend .form-check-label;
+    padding-left: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 }
 
-input[type="submit"].cancel {
-  @extend .btn, .btn-outline-primary;
-  width: 100%;
+.button_to {
+  max-width: 500px;
+
+  input[type="submit"].cancel {
+    @extend .btn, .btn-outline-primary;
+    width: 100%;
+  }
 }
 
 footer {
