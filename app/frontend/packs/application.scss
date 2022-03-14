@@ -93,8 +93,9 @@ header {
         margin: 10px;
       }
 
-      &.edit:hover {
-        @extend .btn-primary;
+      &.password {
+        @extend .btn-outline-danger;
+        margin: 10px;
       }
     }
   }
@@ -147,6 +148,25 @@ header {
       padding-left: 0.5rem;
       margin-bottom: 0.5rem;
     }
+  }
+}
+
+.edit_user {
+  max-width: 500px;
+
+  input:not([type="submit"]) {
+    @extend .form-control;
+  }
+
+  input[type="submit"] {
+    @extend .btn, .btn-primary;
+    margin: 15px 0px 15px 0px;
+  }
+}
+
+.button_to {
+  input[type="submit"] {
+    @extend .btn, .btn-danger;
   }
 }
 
