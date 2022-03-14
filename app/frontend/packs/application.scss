@@ -151,23 +151,28 @@ header {
   }
 }
 
-.edit_user {
+form.edit_user {
   max-width: 500px;
+
+  label {
+    font-weight: 600;
+  }
 
   input:not([type="submit"]) {
     @extend .form-control;
+    margin-bottom: 0.75rem;
   }
 
-  input[type="submit"] {
+  input[type="submit"].update {
     @extend .btn, .btn-primary;
     margin: 15px 0px 15px 0px;
+    width: 100%;
   }
 }
 
-.button_to {
-  input[type="submit"] {
-    @extend .btn, .btn-danger;
-  }
+input[type="submit"].cancel {
+  @extend .btn, .btn-outline-primary;
+  width: 100%;
 }
 
 footer {
