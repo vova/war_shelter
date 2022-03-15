@@ -12,10 +12,7 @@
   <body>
     <header>
       <nav id="nav">
-        <form class="form-inline">
-          <%= link_to image_tag('logo.png'), root_path %>
-          <%= link_to 'Admin', admin_root_path, class: "btn btn-outline-dark" %>
-        </form>
+        <%= link_to image_tag('logo.png'), root_path %>
 
         <% if current_user %>
           <form class="form-inline">
@@ -23,6 +20,7 @@
             <%= link_to "Log out", destroy_user_session_path, :method => :delete, class: "btn btn-outline-primary" %>
           </form>
         <% end %>
+
       </nav>
     </header>
 
