@@ -2,8 +2,10 @@
 
 require 'simplecov'
 
-SimpleCov.start do
+SimpleCov.start :rails do
   coverage_dir 'target/coverage'
 
-  add_filter %w[spec db config]
+  add_filter '/spec/'
+  add_filter '/db'
+  add_filter '/config/'
 end

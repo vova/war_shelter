@@ -19,7 +19,7 @@
 
   <%= f.label :status %>
   <%= f.select :status_id, options_for_select(UserStatus.all.pluck(:status, :id)) %>
-  
+
   <%= f.label :coordinator %>
   <%= f.select :coordinator_id, options_for_select(AdminUser.all.pluck(:name, :id)) %>
 
@@ -52,12 +52,6 @@
 
   <%= f.label :comment %>
   <%= f.text_area :comment, rows: 2 %>
-
-  <%#= f.label :password %>
-  <%#= f.password_field :password %>
-
-  <%#= f.label :password_confirmation, "Confirm Password" %>
-  <%#= f.password_field :password_confirmation %>
 
   <%= f.submit "Update Account", class: "update" %>
   <%= button_to "Cancel", user_path(current_user), method: :get, class: "cancel" %>

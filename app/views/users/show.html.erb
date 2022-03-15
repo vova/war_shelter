@@ -1,4 +1,8 @@
 <section class='user'>
+  <div class="button fa fa-arrow-left fa-lg pull-right">
+    <%= link_to 'Available Places', root_path, class: "btn btn-outline-dark" %>
+  </div>
+
   <h2>Your account</h2>
   <%= render 'user', user: current_user %>
   <div class='actions'>

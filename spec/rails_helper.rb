@@ -22,8 +22,14 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 RSpec.configure do |config|
-  config.use_transactional_fixtures = true
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::TestHelpers, type: :view
+
+  config.use_active_record = true
+  config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
-  config.use_active_record = true
+
+  config.run_all_when_everything_filtered = true
+  config.filter_run :focus
 end
