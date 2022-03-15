@@ -17,7 +17,7 @@
         <% if current_user %>
           <form class="form-inline">
             <%= link_to current_user.name, user_path(current_user) %>
-            <%= link_to "Log out", destroy_user_session_path, :method => :delete, class: "btn btn-outline-primary" %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "logout-btn" %>
           </form>
         <% end %>
 
