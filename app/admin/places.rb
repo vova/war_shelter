@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Place do
   permit_params(
     :name, :accommodation_type_id, :city, :region, :rooms_available,
@@ -32,11 +34,11 @@ ActiveAdmin.register Place do
   scope('IVANO-FRANKIVSK') { |scope| scope.where(Place.arel_table[:city].matches('Ivano-Frankivsk')) }
   scope('UZHOROD') { |scope| scope.where(Place.arel_table[:city].matches('Uzhgorod')) }
   scope('OTHERS') do |scope|
-    scope.where.not(Place.arel_table[:city].matches('Ternopil')).
-      where.not(Place.arel_table[:city].matches('Lviv')).
-      where.not(Place.arel_table[:city].matches('Chernivtsi')).
-      where.not(Place.arel_table[:city].matches('Ivano-Frankivsk')).
-      where.not(Place.arel_table[:city].matches('Uzhorod'))
+    scope.where.not(Place.arel_table[:city].matches('Ternopil'))
+         .where.not(Place.arel_table[:city].matches('Lviv'))
+         .where.not(Place.arel_table[:city].matches('Chernivtsi'))
+         .where.not(Place.arel_table[:city].matches('Ivano-Frankivsk'))
+         .where.not(Place.arel_table[:city].matches('Uzhorod'))
   end
 
   filter :content_matches,

@@ -3,7 +3,7 @@ ActiveAdmin.register User do
 
   permit_params(
     :email, :password, :password_confirmation, :status_id,
-    :coordinator_id, :from, :destination, :adults, :kids, :kids_comment,
+    :coordinator_id, :from, :destination, :destination_region, :adults, :kids, :kids_comment,
     :pets, :phone, :phone2, :geo, :accommodation_pref, :transport_id,
     :date_arrival, :request_id, :vaccination, :comment, :name
   )
@@ -74,6 +74,7 @@ ActiveAdmin.register User do
     column :email
     column :from
     column :destination
+    column 'Region', :destination_region
     column :adults
     column :kids
     column :kids_comment
@@ -131,6 +132,7 @@ ActiveAdmin.register User do
       f.input :phone2
       f.input :from
       f.input :destination
+      f.input :destination_region
       f.input :adults, min: 0
       f.input :kids, min: 0
       f.input :kids_comment
@@ -149,6 +151,7 @@ ActiveAdmin.register User do
       row :email
       row :from
       row :destination
+      row :destination_region
       row :adults
       row :kids
       row :kids_comment

@@ -63,8 +63,8 @@ class Place < ApplicationRecord
     users_table = user.class.arel_table
 
     query = available.where(
-      arel_table[:city].matches(
-        "%#{user.destination}%"
+      arel_table[:region].matches(
+        "%#{user.destination_region}%"
       ).and(
         arel_table[:capacity].gteq(
           (user.adults || 0) + (user.kids || 0)
