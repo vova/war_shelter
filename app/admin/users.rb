@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register User do
   menu priority: 1
 
@@ -5,14 +7,14 @@ ActiveAdmin.register User do
     :email, :password, :password_confirmation, :status_id,
     :coordinator_id, :from, :destination, :adults, :kids, :kids_comment,
     :pets, :phone, :phone2, :geo, :accommodation_pref, :transport_id,
-    :date_arrival, :request_id, :vaccination, :comment, :name
+    :date_arrival, :request_id, :vaccination, :comment, :name, :region_id
   )
 
   controller do
     def scoped_collection
       end_of_association_chain.includes(
         :user_status, :coordinator,
-        :accommodation_type, :transport
+        :accommodation_type, :transport, :region
       )
     end
 
@@ -35,6 +37,13 @@ ActiveAdmin.register User do
   scope('At home') { |scope| scope.where(status_id: 5) }
   scope('No response') { |scope| scope.where(status_id: 6) }
   scope('Declined') { |scope| scope.where(status_id: 7) }
+
+  scope('LVIV Destination') { |scope| scope.where(region_id: 2) }
+  scope('TERNOPIL Destination') { |scope| scope.where(region_id: 3) }
+  scope('CHERNIVTSI Destination') { |scope| scope.where(region_id: 4) }
+  scope('IVANO-FRANKIVSK Destination') { |scope| scope.where(region_id: 5) }
+  scope('UZHGOROD Destination') { |scope| scope.where(region_id: 6) }
+  scope('OTHER Destination') { |scope| scope.where(region_id: 1) }
 
   filter :status_id,
          label: 'Status', as: :select,
@@ -60,6 +69,11 @@ ActiveAdmin.register User do
   filter :email
   filter :from
   filter :destination
+  filter :region_id,
+         label: 'Region', as: :select,
+         collection: lambda {
+           Region.all.pluck(:center, :id)
+         }
   filter :adults
   filter :kids
   filter :pets
@@ -74,6 +88,9 @@ ActiveAdmin.register User do
     column :email
     column :from
     column :destination
+    column :region_id do |user|
+      user.region&.center
+    end
     column :adults
     column :kids
     column :kids_comment
@@ -84,13 +101,13 @@ ActiveAdmin.register User do
     column :vaccination
     column :comment
     column :status_id do |user|
-      user.user_status.status
+      user.user_status&.status
     end
     column :coordinator_id do |user|
       "#{user.coordinator.name}" "\n" "#{user.coordinator.email}"
     end
     column :accommodation_pref do |user|
-      user.accommodation_type.name
+      user.accommodation_type&.name
     end
     column :transport_id do |user|
       user.transport.presentable_name
@@ -131,6 +148,12 @@ ActiveAdmin.register User do
       f.input :phone2
       f.input :from
       f.input :destination
+      f.input(
+        :region_id,
+        as: :select,
+        collection: Region.all.pluck(:center, :id),
+        include_blank: false
+      )
       f.input :adults, min: 0
       f.input :kids, min: 0
       f.input :kids_comment
@@ -149,6 +172,9 @@ ActiveAdmin.register User do
       row :email
       row :from
       row :destination
+      row :region_id do |user|
+        user.region.center
+      end
       row :adults
       row :kids
       row :kids_comment

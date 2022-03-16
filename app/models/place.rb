@@ -1,14 +1,19 @@
+# frozen_string_literal: true
+
+# class allows database access to places table
 class Place < ApplicationRecord
   include PhoneValidations
   include PgSearch::Model
 
-  belongs_to :user, inverse_of: :places, touch: true,
-             foreign_key: 'assigned_to', class_name: 'User', optional: true
-  belongs_to :coordinator,
-             foreign_key: 'coordinator_id', class_name: 'AdminUser'
-  belongs_to :accommodation_type,
-             foreign_key: 'accommodation_type_id',
-             class_name: 'AccommodationType'
+  belongs_to :user,
+             inverse_of: :places,
+             touch: true,
+             foreign_key: 'assigned_to',
+             class_name: 'User',
+             optional: true
+  belongs_to :coordinator, foreign_key: 'coordinator_id', class_name: 'AdminUser'
+  belongs_to :accommodation_type, foreign_key: 'accommodation_type_id', class_name: 'AccommodationType'
+  belongs_to :region, foreign_key: 'region_id', class_name: 'Region'
 
   has_paper_trail
 
@@ -21,7 +26,9 @@ class Place < ApplicationRecord
     pln: 'PLN'
   }, _default: 'UAH', _prefix: :currency
 
-  scope :to_pay_attention, lambda { |current_admin_user| where(coordinator_id: current_admin_user.id).where.not(status: :not_available) }
+  scope :to_pay_attention, lambda { |current_admin_user|
+    where(coordinator_id: current_admin_user.id).where.not(status: :not_available)
+  }
 
   TSEARCH_WEIGHTS = {
     highest: 'A',
@@ -60,11 +67,9 @@ class Place < ApplicationRecord
   scope :content_matches, ->(term) { super_search(term) }
 
   scope :available_places_for, lambda { |user|
-    users_table = user.class.arel_table
-
     query = available.where(
-      arel_table[:city].matches(
-        "%#{user.destination}%"
+      arel_table[:region_id].eq(
+        user.region_id
       ).and(
         arel_table[:capacity].gteq(
           (user.adults || 0) + (user.kids || 0)
@@ -100,7 +105,7 @@ class Place < ApplicationRecord
       type: accommodation_type.name,
       rooms: rooms_available,
       beds: beds,
-      kids_beds: kids_beds.to_i > 0 ? kids_beds : nil,
+      kids_beds: kids_beds.to_i.positive? ? kids_beds : nil,
       pets: is_pets_allowed ? 'allowed' : nil,
       price_per_day: price_per_day,
       price_per_month: price_per_month,
@@ -109,6 +114,6 @@ class Place < ApplicationRecord
       phone: phone,
       phone2: phone2,
       contact_name: contact_name
-    }.map{|k,v| "#{k}: #{v}" if v.present? }.compact.join(' | ')
+    }.map { |k, v| "#{k}: #{v}" if v.present? }.compact.join(' | ')
   end
 end

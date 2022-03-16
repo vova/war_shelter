@@ -26,6 +26,7 @@ ActiveAdmin.register_page "Dashboard" do
           table_for collection do |t|
             t.column('name') { |place| link_to(place.name, admin_place_path(place)) }
             t.column('city') { |place| place.city }
+            t.column('region') { |place| place.region&.center }
             t.column('address') { |place| place.address }
             t.column('status') { |place| place.status }
             t.column('Accommodation type') { |place| place.accommodation_type }
