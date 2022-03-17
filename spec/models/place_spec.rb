@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
-require 'pry'
 
 RSpec.describe Place, type: :model do
   let(:user) { FactoryBot.create(:user) }
-  let(:coordinator){ FactoryBot.create(:admin_user) }
+  let(:coordinator) { FactoryBot.create(:admin_user) }
 
   describe 'table columns' do
     it { is_expected.to have_db_column(:name).of_type(:string).with_options(limit: 100, null: false) }

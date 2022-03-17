@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :region do
-    center { 1 }
+    center { Region.centers.values.first }
   end
 end

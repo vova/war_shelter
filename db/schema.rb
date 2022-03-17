@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_16_162105) do
+ActiveRecord::Schema.define(version: 2022_03_17_081808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2022_03_16_162105) do
     t.string "center"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["center"], name: "index_regions_on_center"
+    t.index ["center"], name: "index_regions_on_center", unique: true
   end
 
   create_table "transports", force: :cascade do |t|
