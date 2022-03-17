@@ -6,13 +6,23 @@ RSpec.describe HomeController, type: :controller do
   end
 
   let(:user) { create(:user) }
-  let(:place) { create(:place, coordinator_id: AdminUser.first.id, accommodation_type_id: AccommodationType.first.id) }
+  let(:region) { create(:region, center: Region.centers.values.last) }
+
+  let(:place) do
+    create(
+      :place,
+      coordinator_id: AdminUser.first.id,
+      accommodation_type_id: AccommodationType.first.id,
+      region_id: region.id
+    )
+  end
+
   let(:place_available) do
     create(
       :place,
       coordinator_id: AdminUser.first.id,
       accommodation_type_id: AccommodationType.first.id,
-      city: user.destination
+      region_id: user.region_id
     )
   end
 

@@ -11,7 +11,7 @@ RSpec.describe Place, type: :model do
     it { is_expected.to have_db_column(:assigned_to).of_type(:integer) }
     it { is_expected.to have_db_column(:accommodation_type_id).of_type(:integer) }
     it { is_expected.to have_db_column(:city).of_type(:string) }
-    it { is_expected.to have_db_column(:region).of_type(:string) }
+    it { is_expected.to have_db_column(:region_id).of_type(:integer) }
     it { is_expected.to have_db_column(:rooms_available).of_type(:integer) }
     it { is_expected.to have_db_column(:beds).of_type(:integer) }
     it { is_expected.to have_db_column(:kids_beds).of_type(:integer) }
@@ -47,7 +47,12 @@ RSpec.describe Place, type: :model do
     it { is_expected.to belong_to(:user).inverse_of(:places).optional(true) }
     it { is_expected.to belong_to(:user).class_name('User').with_foreign_key('assigned_to').touch(true).optional(true) }
     it { is_expected.to belong_to(:coordinator).class_name('AdminUser').with_foreign_key('coordinator_id') }
-    it { is_expected.to belong_to(:accommodation_type).class_name('AccommodationType').with_foreign_key('accommodation_type_id') }
+    it {
+      is_expected.to belong_to(:accommodation_type)
+        .class_name('AccommodationType')
+        .with_foreign_key('accommodation_type_id')
+    }
+    it { is_expected.to belong_to(:region).class_name('Region').with_foreign_key('region_id') }
   end
 
   let(:place) do
@@ -55,7 +60,8 @@ RSpec.describe Place, type: :model do
       :place,
       assigned_to: user.id,
       coordinator_id: coordinator.id,
-      accommodation_type_id: user.accommodation_type.id
+      accommodation_type_id: user.accommodation_type.id,
+      region_id: user.region.id
     )
   end
 
@@ -66,7 +72,8 @@ RSpec.describe Place, type: :model do
         status: status_name,
         assigned_to: user.id,
         coordinator_id: coordinator.id,
-        accommodation_type_id: user.accommodation_type.id
+        accommodation_type_id: user.accommodation_type.id,
+        region_id: user.region.id
       )
     end
 
@@ -104,7 +111,8 @@ RSpec.describe Place, type: :model do
         currency: currency_name,
         assigned_to: user.id,
         coordinator_id: coordinator.id,
-        accommodation_type_id: user.accommodation_type.id
+        accommodation_type_id: user.accommodation_type.id,
+        region_id: user.region.id
       )
     end
 
