@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Provides the home endpoints
 class HomeController < ApplicationController
   before_action :authenticate_user!
   before_action :set_available_places, only: %i[index show]
@@ -21,7 +22,7 @@ class HomeController < ApplicationController
     @available_places = Place.available_places_for(
       current_user
     ).includes(
-      :coordinator, :accommodation_type, :user
+      :coordinator, :accommodation_type, :user, :region
     )
   end
 end

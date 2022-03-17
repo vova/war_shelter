@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_07_150814) do
+ActiveRecord::Schema.define(version: 2022_03_17_081808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(version: 2022_03_07_150814) do
     t.string "name", limit: 100, null: false
     t.integer "accommodation_type_id"
     t.string "city"
-    t.string "region"
     t.integer "rooms_available"
     t.integer "beds"
     t.integer "kids_beds"
@@ -85,8 +84,17 @@ ActiveRecord::Schema.define(version: 2022_03_07_150814) do
     t.string "floor"
     t.boolean "is_newbuilding"
     t.integer "assigned_to"
+    t.integer "region_id"
     t.index ["accommodation_type_id"], name: "index_places_on_accommodation_type_id"
     t.index ["assigned_to"], name: "index_places_on_assigned_to"
+    t.index ["region_id"], name: "index_places_on_region_id"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "center"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["center"], name: "index_regions_on_center", unique: true
   end
 
   create_table "transports", force: :cascade do |t|
@@ -134,8 +142,10 @@ ActiveRecord::Schema.define(version: 2022_03_07_150814) do
     t.boolean "vaccination"
     t.text "comment"
     t.string "name"
+    t.integer "region_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["region_id"], name: "index_users_on_region_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

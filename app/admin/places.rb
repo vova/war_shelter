@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Place do
   permit_params(
-    :name, :accommodation_type_id, :city, :region, :rooms_available,
+    :name, :accommodation_type_id, :city, :rooms_available,
     :beds, :kids_beds, :is_pets_allowed, :capacity, :additional_child_place,
     :coordinator_id, :status, :price_per_day, :price_per_month, :currency,
     :address, :distance_from_center, :available_since, :available_till, :phone,
-    :phone2, :is_realtor, :contact_name, :geo, :website, :comment, :floor, :is_newbuilding, :assigned_to
+    :phone2, :is_realtor, :contact_name, :geo, :website, :comment, :floor,
+    :is_newbuilding, :assigned_to, :region_id
   )
 
   menu priority: 2
@@ -12,7 +15,7 @@ ActiveAdmin.register Place do
   controller do
     def scoped_collection
       end_of_association_chain.includes(
-        :coordinator, :accommodation_type, :user
+        :coordinator, :accommodation_type, :user, :region
       )
     end
   end
@@ -32,11 +35,11 @@ ActiveAdmin.register Place do
   scope('IVANO-FRANKIVSK') { |scope| scope.where(Place.arel_table[:city].matches('Ivano-Frankivsk')) }
   scope('UZHOROD') { |scope| scope.where(Place.arel_table[:city].matches('Uzhgorod')) }
   scope('OTHERS') do |scope|
-    scope.where.not(Place.arel_table[:city].matches('Ternopil')).
-      where.not(Place.arel_table[:city].matches('Lviv')).
-      where.not(Place.arel_table[:city].matches('Chernivtsi')).
-      where.not(Place.arel_table[:city].matches('Ivano-Frankivsk')).
-      where.not(Place.arel_table[:city].matches('Uzhorod'))
+    scope.where.not(Place.arel_table[:city].matches('Ternopil'))
+         .where.not(Place.arel_table[:city].matches('Lviv'))
+         .where.not(Place.arel_table[:city].matches('Chernivtsi'))
+         .where.not(Place.arel_table[:city].matches('Ivano-Frankivsk'))
+         .where.not(Place.arel_table[:city].matches('Uzhorod'))
   end
 
   filter :content_matches,
@@ -59,7 +62,11 @@ ActiveAdmin.register Place do
          }
   filter :name
   filter :city
-  filter :region
+  filter :region_id,
+         label: 'Region', as: :select,
+         collection: lambda {
+           Region.all.pluck(:center, :id)
+         }
   filter :rooms_available
   filter :beds
   filter :kids_beds
@@ -88,7 +95,9 @@ ActiveAdmin.register Place do
     id_column
     column :name
     column :city
-    column :region
+    column :region_id do |place|
+      place.region&.center
+    end
     column :rooms_available
     column :beds
     column :kids_beds
@@ -115,21 +124,21 @@ ActiveAdmin.register Place do
     column :floor
     column :is_newbuilding
     column :accommodation_type_id do |place|
-      place.accommodation_type.name
+      place.accommodation_type&.name
     end
     column :coordinator_id do |place|
-     "#{place.coordinator.name}\n#{place.coordinator.email}"
+      "#{place.coordinator.name}\n#{place.coordinator.email}"
     end
     column :assigned_to do |place|
       place.user&.name
     end
 
     actions do |place|
-      button_tag "Copy",
-                 :type => "button",
-                 :class => "copy_button",
-                 :id => "clipboard-btn",
-                 :data => {:clipboard_text => place.to_copy_format}
+      button_tag 'Copy',
+                 type: 'button',
+                 class: 'copy_button',
+                 id: 'clipboard-btn',
+                 data: { clipboard_text: place.to_copy_format }
     end
   end
 
@@ -138,7 +147,12 @@ ActiveAdmin.register Place do
     f.inputs 'Place' do
       f.input :name
       f.input :city
-      f.input :region
+      f.input(
+        :region_id,
+        as: :select,
+        collection: Region.all.pluck(:center, :id),
+        include_blank: false
+      )
       f.input :address
       f.input :status
       f.input :is_realtor
@@ -179,7 +193,9 @@ ActiveAdmin.register Place do
     attributes_table do
       row :name
       row :city
-      row :region
+      row :region_id do |place|
+        place.region&.center
+      end
       row :rooms_available
       row :beds
       row :kids_beds

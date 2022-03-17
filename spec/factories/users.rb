@@ -8,6 +8,7 @@ FactoryBot.define do
     coordinator { association(:admin_user) }
     from { FFaker::Address.city }
     destination { FFaker::Address.city }
+    region
     adults { 2 }
     kids { 2 }
     kids_comment { 'Kids comment' }

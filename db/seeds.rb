@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -21,10 +23,16 @@ AccommodationType.names.each_value do |type|
   AccommodationType.create(name: type) unless AccommodationType.where(name: type).any?
 end
 
-AdminUser.create!(
-  name: 'Vasya',
-  email: 'admin@example.com',
-  password: 'password',
-  password_confirmation: 'password',
-  phone: '+380981111111'
-) if Rails.env.development?
+Region.centers.each do |_, center|
+  Region.create(center: center) unless Region.where(center: center).any?
+end
+
+if Rails.env.development?
+  AdminUser.create!(
+    name: 'Vasya',
+    email: 'admin@example.com',
+    password: 'password',
+    password_confirmation: 'password',
+    phone: '+380981111111'
+  )
+end

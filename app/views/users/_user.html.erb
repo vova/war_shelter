@@ -7,13 +7,14 @@
   <li><b>Another phone: </b><%= user.phone2 %></li>
   <li><b>From: </b><%= user.from %></li>
   <li><b>Destination: </b><%= user.destination %></li>
+  <li><b>Region: </b><%= user.region.center %></li>
   <li><b>Adults: </b><%= user.adults %></li>
   <li><b>Kids: </b><%= user.kids %></li>
   <li><b>Pets: </b><span class='boolean'><%= user.pets_status %></span></li>
   <li><b>Vaccination: </b><span class='boolean'><%= user.vaccination_status %></span></li>
   <li><b>Geo: </b><%= user.geo %></li>
   <li><b>Accommodation preferences: </b><%= user.accommodation_type.name %></li>
-  <li><b>Date arrival: </b><%= user.date_arrival.strftime("%B %d, %l:%M %P") %></li>
+  <li><b>Date arrival: </b><%= user.date_arrival&.strftime("%B %d, %l:%M %P") %></li>
   <li><b>Request id: </b><%= user.request_id %></li>
   <li><b>Comment: </b><%= user.comment %></li>
 </ul>
