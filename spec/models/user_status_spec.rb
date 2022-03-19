@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# spec/models/user_status.rb
-
 require 'rails_helper'
 
 RSpec.describe UserStatus, type: :model do
