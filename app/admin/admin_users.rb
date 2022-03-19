@@ -1,4 +1,6 @@
-ActiveAdmin.register AdminUser, as: "Coordinators" do
+# frozen_string_literal: true
+
+ActiveAdmin.register AdminUser, as: 'Coordinators' do
   menu priority: 3
   permit_params :email, :password, :password_confirmation,
                 :name, :phone, :phone2

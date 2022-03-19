@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 ActiveAdmin.setup do |config|
   # == Site Title
   #
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "War Shelter"
+  config.site_title = 'War Shelter'
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -157,7 +159,7 @@ ActiveAdmin.setup do |config|
   # You can exclude possibly sensitive model attributes from being displayed,
   # added to forms, or exported by default by ActiveAdmin
   #
-  config.filter_attributes = [:encrypted_password, :password, :password_confirmation]
+  config.filter_attributes = %i[encrypted_password password password_confirmation]
 
   # == Localize Date/Time Format
   #
@@ -251,20 +253,9 @@ ActiveAdmin.setup do |config|
   # or customize the formats shown per namespace/globally
   #
   # To disable/customize for the :admin namespace:
-  #
-    config.namespace :admin do |admin|
-  #
-  #     # Disable the links entirely
-      admin.download_links = false
-  #
-  #     # Only show XML & PDF options
-  #     admin.download_links = [:xml, :pdf]
-  #
-  #     # Enable/disable the links based on block
-  #     #   (for example, with cancan)
-  #     admin.download_links = proc { can?(:view_download_links) }
-  #
-    end
+  config.namespace :admin do |admin|
+    admin.download_links = false
+  end
 
   # == Pagination
   #

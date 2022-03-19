@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module EmailValidations
   extend ActiveSupport::Concern
 
-  EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/
-  INVALID_FORMAT_MSG = 'has invalid format'.freeze
+  EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/.freeze
+  INVALID_FORMAT_MSG = 'has invalid format'
 
   included do
     before_validation :normalize_email!

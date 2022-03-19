@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Transport < ApplicationRecord
   BY_COMPANY = 'Provided by company'
   NOT_BY_COMPANY = 'Not provided by company'
@@ -14,7 +16,7 @@ class Transport < ApplicationRecord
     'Bus' => BUS,
     'No transport' => NO_TRANSPORT,
     'Unknown' => UNKNOWN
-  }
+  }.freeze
 
   enum name: TRANSPORTS, _default: CAR
 
@@ -28,7 +30,6 @@ class Transport < ApplicationRecord
   end
 
   def presentable_name
-    "#{name} - "\
-    "#{company_transfer ? BY_COMPANY : NOT_BY_COMPANY }"
+    "#{name} - #{company_transfer ? BY_COMPANY : NOT_BY_COMPANY}"
   end
 end

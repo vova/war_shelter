@@ -2,7 +2,7 @@
 
 module MarkdownRenderer
   def self.markdown
-    @@markdown ||=
+    @@markdown ||=  # rubocop:disable Style/ClassVars
       Redcarpet::Markdown.new(
         Redcarpet::Render::HTML.new(
           escape_html: true,
