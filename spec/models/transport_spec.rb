@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# spec/models/transport.rb
-
 require 'rails_helper'
 
 RSpec.describe Transport, type: :model do

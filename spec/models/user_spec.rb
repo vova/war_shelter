@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# spec/models/user.rb
-
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
