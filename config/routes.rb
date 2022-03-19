@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users
 
   ActiveAdmin.routes(self)
-  root to: "home#index"
+  root to: 'home#index'
 
   as :user do
     get 'users/edit' => 'devise/registrations#edit', as: 'edit_user_registration'

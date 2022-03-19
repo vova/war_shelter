@@ -112,7 +112,7 @@ ActiveAdmin.register User do
     column :transport_id do |user|
       user.transport.presentable_name
     end
-    column :date_arrival do |user|
+    column :date_arrival do |user| # rubocop:disable Style/SymbolProc
       user.date_arrival
     end
     actions
@@ -196,7 +196,7 @@ ActiveAdmin.register User do
       row :transport_id do |user|
         user.transport.presentable_name
       end
-      row :date_arrival do |user|
+      row :date_arrival do |user|  # rubocop:disable Style/SymbolProc
         user.date_arrival
       end
     end

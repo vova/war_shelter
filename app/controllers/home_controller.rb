@@ -11,7 +11,7 @@ class HomeController < ApplicationController
     if @available_places.pluck(:id).include?(params[:id].to_i)
       @place = Place.find(params[:id])
     else
-      flash.now.alert = I18n.t('place_is_not_available')
+      flash.now.alert = I18n.t('controllers.place_is_not_available')
       render :index
     end
   end

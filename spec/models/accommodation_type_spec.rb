@@ -1,6 +1,16 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe AccommodationType, type: :model do
+  describe 'table columns' do
+    it { is_expected.to have_db_column(:name).of_type(:string) }
+  end
+
+  describe 'relations' do
+    it { is_expected.to have_many(:users).dependent(:destroy).inverse_of(:accommodation_type) }
+  end
+
   describe '#create' do
     subject(:create_accommodation_type) { AccommodationType.new(name: type_name) }
 

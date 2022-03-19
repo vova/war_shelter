@@ -74,7 +74,7 @@ RSpec.describe HomeController, type: :controller do
       let(:params) { { id: SecureRandom.uuid } }
 
       it 'raise error' do
-        expect(flash[:alert]).to include(I18n.t('place_is_not_available'))
+        expect(flash[:alert]).to include(I18n.t('controllers.place_is_not_available'))
       end
     end
   end

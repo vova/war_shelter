@@ -23,17 +23,25 @@ gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 
 group :development, :test do
+  gem 'brakeman', '~> 5.2'
   gem 'bundler-audit', require: false
+  gem 'bundler-leak', '~> 0.2'
   gem 'factory_bot_rails', '~> 6.2'
   gem 'ffaker', '~> 2.20'
+  gem 'lefthook', '~> 0.7'
   gem 'pry', '~> 0.13'
   gem 'pry-byebug', '~> 3.9'
   gem 'pry-doc', '~> 1.1'
   gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 5.1.0'
+  gem 'rubocop', '~> 1.25'
+  gem 'rubocop-performance', '~> 1.13'
+  gem 'rubocop-rails', '~> 2.13'
   gem 'ruby_audit', require: false
   gem 'shoulda-matchers', '~> 5.1'
   gem 'simplecov', '~> 0.21'
+  gem 'strong_migrations', '~> 0.8'
+  gem 'traceroute', '~> 0.8'
 end
 
 group :test do

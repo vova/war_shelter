@@ -11,13 +11,13 @@ class Place < ApplicationRecord
              foreign_key: 'assigned_to',
              class_name: 'User',
              optional: true
-  belongs_to :coordinator, foreign_key: 'coordinator_id', class_name: 'AdminUser'
-  belongs_to :accommodation_type, foreign_key: 'accommodation_type_id', class_name: 'AccommodationType'
-  belongs_to :region, foreign_key: 'region_id', class_name: 'Region'
+  belongs_to :coordinator, class_name: 'AdminUser'
+  belongs_to :accommodation_type
+  belongs_to :region
 
   has_paper_trail
 
-  enum status: %i[available booked assigned not_available paid_in_advance]
+  enum status: { available: 0, booked: 1, assigned: 2, not_available: 3, paid_in_advance: 4 }
 
   enum currency: {
     uah: 'UAH',
@@ -114,6 +114,6 @@ class Place < ApplicationRecord
       phone: phone,
       phone2: phone2,
       contact_name: contact_name
-    }.map { |k, v| "#{k}: #{v}" if v.present? }.compact.join(' | ')
+    }.filter_map { |k, v| "#{k}: #{v}" if v.present? }.compact.join(' | ')
   end
 end

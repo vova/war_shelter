@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :user do
     name { FFaker::Name.name }
@@ -20,7 +22,7 @@ FactoryBot.define do
     geo { 'UA' }
     accommodation_type
     transport
-    date_arrival { Time.now + 2.days }
+    date_arrival { 2.days.from_now }
     request_id { '2' }
     vaccination { true }
     comment { FFaker::Lorem.sentence }
