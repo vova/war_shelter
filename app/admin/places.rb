@@ -7,7 +7,7 @@ ActiveAdmin.register Place do
     :coordinator_id, :status, :price_per_day, :price_per_month, :currency,
     :address, :distance_from_center, :available_since, :available_till, :phone,
     :phone2, :is_realtor, :contact_name, :geo, :website, :comment, :floor,
-    :is_newbuilding, :assigned_to, :region_id
+    :is_newbuilding, :assigned_to, :region_id, :country_id
   )
 
   menu priority: 2
@@ -15,7 +15,7 @@ ActiveAdmin.register Place do
   controller do
     def scoped_collection
       end_of_association_chain.includes(
-        :coordinator, :accommodation_type, :user, :region
+        :coordinator, :accommodation_type, :user, :region, :country
       )
     end
   end
@@ -67,6 +67,11 @@ ActiveAdmin.register Place do
          collection: lambda {
            Region.all.pluck(:center, :id)
          }
+  filter :country_id,
+         label: 'Country', as: :select,
+         collection: lambda {
+           Country.all.pluck(:name, :id)
+         }
   filter :rooms_available
   filter :beds
   filter :kids_beds
@@ -97,6 +102,9 @@ ActiveAdmin.register Place do
     column :city
     column :region_id do |place|
       place.region&.center
+    end
+    column :country_id do |place|
+      place.country.code.upcase
     end
     column :rooms_available
     column :beds
@@ -151,6 +159,12 @@ ActiveAdmin.register Place do
         :region_id,
         as: :select,
         collection: Region.all.pluck(:center, :id),
+        include_blank: false
+      )
+      f.input(
+        :country_id,
+        as: :select,
+        collection: Country.all.pluck(:name, :id),
         include_blank: false
       )
       f.input :address
