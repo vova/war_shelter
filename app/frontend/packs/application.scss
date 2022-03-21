@@ -76,12 +76,6 @@ header {
     }
   }
 
-  .boolean {
-    background-color: $dark-blue;
-    color: white;
-    padding: 4px;
-  }
-
   .actions {
     margin-top: 1rem;
 
@@ -149,6 +143,12 @@ form:not([class="button_to"]) {
     padding-left: 0.5rem;
     margin-bottom: 0.5rem;
   }
+}
+
+.boolean {
+  background-color: $dark-blue;
+  color: white;
+  padding: 4px;
 }
 
 .button_to {
