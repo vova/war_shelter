@@ -15,6 +15,7 @@ class User < ApplicationRecord
   belongs_to :accommodation_type, inverse_of: :users, foreign_key: 'accommodation_pref', class_name: 'AccommodationType'
   belongs_to :transport
   belongs_to :region
+  belongs_to :country
 
   has_many :places, dependent: :destroy, inverse_of: :user, autosave: true
   scope :to_pay_attention, ->(current_admin_user) { where(coordinator_id: current_admin_user.id) }

@@ -7,5 +7,7 @@ class AdminUser < ApplicationRecord
   include EmailValidations
   include PhoneValidations
 
+  belongs_to :country
+
   has_paper_trail
 end

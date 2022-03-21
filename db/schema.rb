@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_17_081808) do
+ActiveRecord::Schema.define(version: 2022_03_21_111707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -49,8 +49,20 @@ ActiveRecord::Schema.define(version: 2022_03_17_081808) do
     t.string "phone"
     t.string "phone2"
     t.boolean "vaccination"
+    t.integer "country_id"
+    t.index ["country_id"], name: "index_admin_users_on_country_id"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.integer "code", default: 0
+    t.string "name"
+    t.string "default_city"
+    t.string "time_zone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["code"], name: "index_countries_on_code"
   end
 
   create_table "places", force: :cascade do |t|
@@ -85,8 +97,10 @@ ActiveRecord::Schema.define(version: 2022_03_17_081808) do
     t.boolean "is_newbuilding"
     t.integer "assigned_to"
     t.integer "region_id"
+    t.integer "country_id"
     t.index ["accommodation_type_id"], name: "index_places_on_accommodation_type_id"
     t.index ["assigned_to"], name: "index_places_on_assigned_to"
+    t.index ["country_id"], name: "index_places_on_country_id"
     t.index ["region_id"], name: "index_places_on_region_id"
   end
 
@@ -143,7 +157,9 @@ ActiveRecord::Schema.define(version: 2022_03_17_081808) do
     t.text "comment"
     t.string "name"
     t.integer "region_id"
+    t.integer "country_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["country_id"], name: "index_users_on_country_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["region_id"], name: "index_users_on_region_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
