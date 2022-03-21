@@ -2,6 +2,7 @@
   <td class="col col-name"><%= place.name %></td>
   <td class="col col-city"><%= place.city %></td>
   <td class="col col-region"><%= place.region.center %></td>
+  <td class="col col-country"><%= place.country&.code&.upcase %></td>
   <td class="col col-rooms_available"><%= place.rooms_available %></td>
   <td class="col col-beds"><%= place.beds %></td>
   <td class="col col-kids_beds"><%= place.kids_beds %></td>
