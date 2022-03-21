@@ -104,7 +104,7 @@ ActiveAdmin.register Place do
       place.region&.center
     end
     column :country_id do |place|
-      place.country.code.upcase
+      place.country&.code&.upcase
     end
     column :rooms_available
     column :beds

@@ -48,6 +48,7 @@ if Rails.env.development?
     email: 'admin@example.com',
     password: 'password',
     password_confirmation: 'password',
-    phone: '+380981111111'
+    phone: '+380981111111',
+    country_id: Country.first.id
   )
 end
