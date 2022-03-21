@@ -3,34 +3,34 @@
   <%= link_to 'Back', root_path, class: "btn btn-outline-dark" %>
 </div>
 
-<h2>Place <%= @place.id %></h2>
+<h2><%= @place.name %></h2>
 
 <ul class="list-group list-group-flush">
-  <li class="list-group-item"><u><b>Name:</b></u> ........................................ <%= @place.name %></li>
-  <li class="list-group-item"><u><b>Accommodation Type:</b></u> .......... <%= @place.accommodation_type&.name %></li>
-  <li class="list-group-item"><u><b>City:</b></u> ............................................ <%= @place.city %></li>
-  <li class="list-group-item"><u><b>Region:</b></u> ....................................... <%= @place.region.center %></li>
-  <li class="list-group-item"><u><b>Rooms Available:</b></u> .................... <%= @place.rooms_available %></li>
-  <li class="list-group-item"><u><b>Bads:</b></u> ........................................... <%= @place.beds %></li>
-  <li class="list-group-item"><u><b>Kids Beds:</b></u> ................................. <%= @place.kids_beds %></li>
-  <li class="list-group-item"><u><b>Is Pets Allowed:</b></u> ...................... <%= @place.is_pets_allowed ? 'YES' : 'NO' %></li>
-  <li class="list-group-item"><u><b>Capacity:</b></u> ................................... <%= @place.capacity %></li>
-  <li class="list-group-item"><u><b>Additonal Kids Beds:</b></u> ............. <%= @place.additional_child_place %></li>
-  <li class="list-group-item"><u><b>Coordinator:</b></u> ............................ <%= @place.coordinator&.name %></li>
-  <li class="list-group-item"><u><b>Status:</b></u> ....................................... <%= @place.status.humanize %></li>
-  <li class="list-group-item"><u><b>Price Per Day:</b></u> .......................... <% if @place.price_per_day %> <%= @place.price_per_day %> <%= @place.currency.upcase %> <% end %></li>
-  <li class="list-group-item"><u><b>Price Per Month:</b></u> ..................... <% if @place.price_per_month %> <%= @place.price_per_month %> <%= @place.currency.upcase %> <% end %></li>
-  <li class="list-group-item"><u><b>Address:</b></u> ..................................... <%= @place.address %></li>
-  <li class="list-group-item"><u><b>Distance From Center:</b></u> ........... <%= @place.distance_from_center %></li>
-  <li class="list-group-item"><u><b>Available Since:</b></u> ........................ <%= @place.available_since %></li>
-  <li class="list-group-item"><u><b>Available Till:</b></u> ............................ <%= @place.available_till %></li>
-  <li class="list-group-item"><u><b>Phones:</b></u> ........................................ <%= @place.phone %>  <%= @place.phone2 %></li>
-  <li class="list-group-item"><u><b>Is Realtor:</b></u> .................................... <%= @place.is_realtor ? 'YES' : 'NO' %></li>
-  <li class="list-group-item"><u><b>Contact Name:</b></u> ........................... <%= @place.contact_name %></li>
-  <li class="list-group-item"><u><b>Geo:</b></u> ............................................... <%= @place.geo %></li>
-  <li class="list-group-item"><u><b>Website:</b></u> ....................................... <%= @place.website %></li>
-  <li class="list-group-item"><u><b>Floor:</b></u> ............................................ <%= @place.floor %></li>
-  <li class="list-group-item"><u><b>Is Newbuilding:</b></u> .......................... <%= @place.is_newbuilding ? 'YES' : 'NO' %></li>
-  <li class="list-group-item"><u><b>Assigned To:</b></u> ............................... <%= @place.user&.name %></li>
-  <li class="list-group-item"><u><b>Comment:</b></u> .................................... <%= @place.comment %></li>
+  <li class="list-group-item"><b>Name:</b> <%= @place.name %></li>
+  <li class="list-group-item"><b>Accommodation Type:</b> <%= @place.accommodation_type&.name %></li>
+  <li class="list-group-item"><b>City:</b> <%= @place.city %></li>
+  <li class="list-group-item"><b>Region:</b> <%= @place.region.center %></li>
+  <li class="list-group-item"><b>Rooms Available:</b> <%= @place.rooms_available %></li>
+  <li class="list-group-item"><b>Bads:</b> <%= @place.beds %></li>
+  <li class="list-group-item"><b>Kids Beds:</b> <%= @place.kids_beds %></li>
+  <li class="list-group-item"><b>Is Pets Allowed:</b> <span class="boolean"><%= @place.is_pets_allowed ? 'YES' : 'NO' %></span></li>
+  <li class="list-group-item"><b>Capacity:</b> <%= @place.capacity %></li>
+  <li class="list-group-item"><b>Additonal Kids Beds:</b> <%= @place.additional_child_place %></li>
+  <li class="list-group-item"><b>Coordinator:</b> <%= @place.coordinator&.name %></li>
+  <li class="list-group-item"><b>Status:</b> <%= @place.status.humanize %></li>
+  <li class="list-group-item"><b>Price Per Day:</b> <% if @place.price_per_day %> <%= @place.price_per_day %> <%= @place.currency.upcase %> <% end %></li>
+  <li class="list-group-item"><b>Price Per Month:</b> <% if @place.price_per_month %> <%= @place.price_per_month %> <%= @place.currency.upcase %> <% end %></li>
+  <li class="list-group-item"><b>Address:</b> <%= @place.address %></li>
+  <li class="list-group-item"><b>Distance From Center:</b> <%= @place.distance_from_center %></li>
+  <li class="list-group-item"><b>Available Since:</b> <%= @place.available_since.strftime("%a, %B %d") %></li>
+  <li class="list-group-item"><b>Available Till:</b> <%= @place.available_till.strftime("%a, %B %d") %></li>
+  <li class="list-group-item"><b>Phones:</b> <%= @place.phone %>  <%= @place.phone2 %></li>
+  <li class="list-group-item"><b>Is Realtor:</b> <span class="boolean"><%= @place.is_realtor ? 'YES' : 'NO' %></span></li>
+  <li class="list-group-item"><b>Contact Name:</b> <%= @place.contact_name %></li>
+  <li class="list-group-item"><b>Geo:</b> <%= @place.geo %></li>
+  <li class="list-group-item"><b>Website:</b> <%= @place.website %></li>
+  <li class="list-group-item"><b>Floor:</b> <%= @place.floor %></li>
+  <li class="list-group-item"><b>Is Newbuilding:</b> <span class="boolean"><%= @place.is_newbuilding ? 'YES' : 'NO'%></span></li>
+  <li class="list-group-item"><b>Assigned To:</b> <%= @place.user&.name %></li>
+  <li class="list-group-item"><b>Comment:</b> <%= @place.comment %></li>
 </ul>

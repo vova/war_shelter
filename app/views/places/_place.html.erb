@@ -16,8 +16,8 @@
   <td class="col col-currency"><%= place.currency&.upcase %></td>
   <td class="col col-address"><%= place.address %></td>
   <td class="col col-distance_from_center"><%= place.distance_from_center %></td>
-  <td class="col col-available_since"><%= place.available_since %></td>
-  <td class="col col-available_till"><%= place.available_till %></td>
+  <td class="col col-available_since"><%= place.available_since.strftime("%a, %B %d") %></td>
+  <td class="col col-available_till"><%= place.available_till.strftime("%a, %B %d") %></td>
   <td class="col col-phone"><%= place.phone %></td>
   <td class="col col-phone2"><%= place.phone2 %></td>
   <td class="col col-is_realtor">
