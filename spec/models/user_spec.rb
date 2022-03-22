@@ -10,6 +10,8 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_db_column(:coordinator_id).of_type(:integer) }
     it { is_expected.to have_db_column(:from).of_type(:string) }
     it { is_expected.to have_db_column(:destination).of_type(:string) }
+    it { is_expected.to have_db_column(:region_id).of_type(:integer) }
+    it { is_expected.to have_db_column(:country_id).of_type(:integer) }
     it { is_expected.to have_db_column(:adults).of_type(:integer) }
     it { is_expected.to have_db_column(:kids).of_type(:integer) }
     it { is_expected.to have_db_column(:kids_comment).of_type(:string) }
@@ -29,6 +31,8 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_db_index(:confirmation_token) }
     it { is_expected.to have_db_index(:email) }
     it { is_expected.to have_db_index(:reset_password_token) }
+    it { is_expected.to have_db_index(:region_id) }
+    it { is_expected.to have_db_index(:country_id) }
   end
 
   describe 'relations' do
@@ -44,6 +48,7 @@ RSpec.describe User, type: :model do
     }
     it { is_expected.to belong_to(:transport) }
     it { is_expected.to belong_to(:region) }
+    it { is_expected.to belong_to(:country) }
     it { is_expected.to have_many(:places).dependent(:destroy).inverse_of(:user).autosave(true) }
   end
 

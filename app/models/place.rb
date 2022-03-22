@@ -14,6 +14,7 @@ class Place < ApplicationRecord
   belongs_to :coordinator, class_name: 'AdminUser'
   belongs_to :accommodation_type
   belongs_to :region
+  belongs_to :country
 
   has_paper_trail
 

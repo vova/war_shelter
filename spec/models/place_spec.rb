@@ -12,6 +12,7 @@ RSpec.describe Place, type: :model do
     it { is_expected.to have_db_column(:accommodation_type_id).of_type(:integer) }
     it { is_expected.to have_db_column(:city).of_type(:string) }
     it { is_expected.to have_db_column(:region_id).of_type(:integer) }
+    it { is_expected.to have_db_column(:country_id).of_type(:integer) }
     it { is_expected.to have_db_column(:rooms_available).of_type(:integer) }
     it { is_expected.to have_db_column(:beds).of_type(:integer) }
     it { is_expected.to have_db_column(:kids_beds).of_type(:integer) }
@@ -49,6 +50,7 @@ RSpec.describe Place, type: :model do
     it { is_expected.to belong_to(:coordinator).class_name('AdminUser') }
     it { is_expected.to belong_to(:accommodation_type) }
     it { is_expected.to belong_to(:region) }
+    it { is_expected.to belong_to(:country) }
   end
 
   let(:place) do
@@ -57,7 +59,8 @@ RSpec.describe Place, type: :model do
       assigned_to: user.id,
       coordinator_id: coordinator.id,
       accommodation_type_id: user.accommodation_type.id,
-      region_id: user.region.id
+      region_id: user.region.id,
+      country_id: user.country.id
     )
   end
 
@@ -69,7 +72,8 @@ RSpec.describe Place, type: :model do
         assigned_to: user.id,
         coordinator_id: coordinator.id,
         accommodation_type_id: user.accommodation_type.id,
-        region_id: user.region.id
+        region_id: user.region.id,
+        country_id: user.country.id
       )
     end
 
@@ -108,7 +112,8 @@ RSpec.describe Place, type: :model do
         assigned_to: user.id,
         coordinator_id: coordinator.id,
         accommodation_type_id: user.accommodation_type.id,
-        region_id: user.region.id
+        region_id: user.region.id,
+        country_id: user.country.id
       )
     end
 

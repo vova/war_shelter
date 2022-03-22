@@ -22,7 +22,7 @@ class HomeController < ApplicationController
     @available_places = Place.available_places_for(
       current_user
     ).includes(
-      :coordinator, :accommodation_type, :user, :region
+      :coordinator, :accommodation_type, :user, :region, :country
     )
   end
 end

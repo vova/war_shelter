@@ -10,6 +10,11 @@ RSpec.describe AdminUser, type: :model do
     it { is_expected.to have_db_column(:phone).of_type(:string) }
     it { is_expected.to have_db_column(:phone2).of_type(:string) }
     it { is_expected.to have_db_column(:vaccination).of_type(:boolean) }
+    it { is_expected.to have_db_column(:country_id).of_type(:integer) }
+  end
+
+  describe 'relations' do
+    it { is_expected.to belong_to(:country) }
   end
 
   describe 'validations' do

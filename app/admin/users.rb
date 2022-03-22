@@ -7,14 +7,15 @@ ActiveAdmin.register User do
     :email, :password, :password_confirmation, :status_id,
     :coordinator_id, :from, :destination, :adults, :kids, :kids_comment,
     :pets, :phone, :phone2, :geo, :accommodation_pref, :transport_id,
-    :date_arrival, :request_id, :vaccination, :comment, :name, :region_id
+    :date_arrival, :request_id, :vaccination, :comment, :name, :region_id,
+    :country_id
   )
 
   controller do
     def scoped_collection
       end_of_association_chain.includes(
         :user_status, :coordinator,
-        :accommodation_type, :transport, :region
+        :accommodation_type, :transport, :region, :country
       )
     end
 
@@ -74,6 +75,11 @@ ActiveAdmin.register User do
          collection: lambda {
            Region.all.pluck(:center, :id)
          }
+  filter :country_id,
+         label: 'Country', as: :select,
+         collection: lambda {
+           Country.all.pluck(:name, :id)
+         }
   filter :adults
   filter :kids
   filter :pets
@@ -90,6 +96,15 @@ ActiveAdmin.register User do
     column :destination
     column :region_id do |user|
       user.region&.center
+    end
+    column :country_id do |user|
+      user.country&.code&.upcase
+    end
+    column 'Base City for Country' do |user|
+      user.country.default_city
+    end
+    column 'Time Zone' do |user|
+      user.country.time_zone
     end
     column :adults
     column :kids
@@ -154,6 +169,12 @@ ActiveAdmin.register User do
         collection: Region.all.pluck(:center, :id),
         include_blank: false
       )
+      f.input(
+        :country_id,
+        as: :select,
+        collection: Country.all.pluck(:name, :id),
+        include_blank: false
+      )
       f.input :adults, min: 0
       f.input :kids, min: 0
       f.input :kids_comment
@@ -174,6 +195,15 @@ ActiveAdmin.register User do
       row :destination
       row :region_id do |user|
         user.region.center
+      end
+      row :country_id do |user|
+        user.country.name
+      end
+      row "Base City for #{user.country.code}" do |user|
+        user.country.default_city
+      end
+      row "Time Zone for #{user.country.code}" do |user|
+        user.country.time_zone
       end
       row :adults
       row :kids

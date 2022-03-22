@@ -27,12 +27,28 @@ Region.centers.each do |_, center|
   Region.create(center: center) unless Region.where(center: center).any?
 end
 
+countries = [
+  { code: :ua, name: 'Ukraine', default_city: 'Lviv' },
+  { code: :pl, name: 'Poland', default_city: 'Krakiv' },
+  { code: :ro, name: 'Romania', default_city: 'Bucharest' },
+  { code: :hu, name: 'Hungary', default_city: 'Budapest' },
+  { code: :md, name: 'Moldova', default_city: 'Kishinev' },
+  { code: :sk, name: 'Slovakia', default_city: 'Bratislava' },
+  { code: :cz, name: 'Czech Republic', default_city: 'Prague' },
+  { code: :de, name: 'Deutschland', default_city: 'Berlin' }
+]
+
+countries.each do |country|
+  Country.create(country.merge(time_zone: ::TimeZoneHelper.country_time_zone(country))) unless Country.exists?(country.slice(:name))
+end
+
 if Rails.env.development?
   AdminUser.create!(
     name: 'Vasya',
     email: 'admin@example.com',
     password: 'password',
     password_confirmation: 'password',
-    phone: '+380981111111'
+    phone: '+380981111111',
+    country_id: Country.first.id
   )
 end

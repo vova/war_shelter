@@ -11,6 +11,7 @@ FactoryBot.define do
     from { FFaker::Address.city }
     destination { FFaker::Address.city }
     region
+    country
     adults { 2 }
     kids { 2 }
     kids_comment { 'Kids comment' }
