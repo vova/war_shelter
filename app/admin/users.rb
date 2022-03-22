@@ -103,6 +103,9 @@ ActiveAdmin.register User do
     column 'Base City for Country' do |user|
       user.country.default_city
     end
+    column 'Time Zone' do |user|
+      user.country.time_zone
+    end
     column :adults
     column :kids
     column :kids_comment
@@ -198,6 +201,9 @@ ActiveAdmin.register User do
       end
       row "Base City for #{user.country.code}" do |user|
         user.country.default_city
+      end
+      row "Time Zone for #{user.country.code}" do |user|
+        user.country.time_zone
       end
       row :adults
       row :kids

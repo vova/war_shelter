@@ -109,6 +109,9 @@ ActiveAdmin.register Place do
     column 'Base City for Country' do |place|
       place.country.default_city
     end
+    column 'Time Zone' do |place|
+      place.country.time_zone
+    end
     column :rooms_available
     column :beds
     column :kids_beds
@@ -218,6 +221,9 @@ ActiveAdmin.register Place do
       end
       row "Base City for #{place.country.code}" do |place|
         place.country.default_city
+      end
+      row "Time Zone for #{place.country.code}" do |place|
+        place.country.time_zone
       end
       row :rooms_available
       row :beds

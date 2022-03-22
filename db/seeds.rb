@@ -39,7 +39,7 @@ countries = [
 ]
 
 countries.each do |country|
-  Country.create(country) unless Country.exists?(country.slice(:name))
+  Country.create(country.merge(time_zone: ::TimeZoneHelper.country_time_zone(country))) unless Country.exists?(country.slice(:name))
 end
 
 if Rails.env.development?
