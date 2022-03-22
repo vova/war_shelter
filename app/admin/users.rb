@@ -100,6 +100,9 @@ ActiveAdmin.register User do
     column :country_id do |user|
       user.country&.code&.upcase
     end
+    column 'Base City for Country' do |user|
+      user.country.default_city
+    end
     column :adults
     column :kids
     column :kids_comment
@@ -192,6 +195,9 @@ ActiveAdmin.register User do
       end
       row :country_id do |user|
         user.country.name
+      end
+      row "Base City for #{user.country.code}" do |user|
+        user.country.default_city
       end
       row :adults
       row :kids

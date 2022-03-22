@@ -106,6 +106,9 @@ ActiveAdmin.register Place do
     column :country_id do |place|
       place.country&.code&.upcase
     end
+    column 'Base City for Country' do |place|
+      place.country.default_city
+    end
     column :rooms_available
     column :beds
     column :kids_beds
@@ -209,6 +212,12 @@ ActiveAdmin.register Place do
       row :city
       row :region_id do |place|
         place.region&.center
+      end
+      row :country_id do |place|
+        place.country.name
+      end
+      row "Base City for #{place.country.code}" do |place|
+        place.country.default_city
       end
       row :rooms_available
       row :beds

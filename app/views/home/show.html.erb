@@ -11,6 +11,7 @@
   <li class="list-group-item"><u><b>City:</b></u> ______________________ <%= @place.city %></li>
   <li class="list-group-item"><u><b>Region:</b></u> ___________________ <%= @place.region.center %></li>
   <li class="list-group-item"><u><b>Country:</b></u> __________________ <%= @place.country.name %></li>
+  <li class="list-group-item"><u><b>Base City for <%= @place.country&.code&.upcase %>:</b></u> __________ <%= @place.country.default_city %></li>
   <li class="list-group-item"><u><b>Rooms Available:</b></u> __________ <%= @place.rooms_available %></li>
   <li class="list-group-item"><u><b>Bads:</b></u> ______________________ <%= @place.beds %></li>
   <li class="list-group-item"><u><b>Kids Beds:</b></u> _________________ <%= @place.kids_beds %></li>
